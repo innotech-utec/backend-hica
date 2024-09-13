@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize"
 
+
+
 //Establecer conexion con BD
 const sequelize = new Sequelize(
     'hica',

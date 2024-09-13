@@ -3,9 +3,9 @@ import { PasswordService } from '../../Auth/Services/PasswordService.js';
 
 export const createUserController = async (request, response) => {
 
-    const { name, password, email } = request.body;
+    const { nombre, password, email, documento, apellido, estado, isAdmin } = request.body;
 
-    if(!email) {
+    if (!email) {
         return response.status(401).json({ message: 'El correo electrónico no puede estar vacío' });
     }
 
@@ -15,11 +15,11 @@ export const createUserController = async (request, response) => {
         return response.status(401).json({ message: 'El correo electrónico ingresado es inválido.' });
     }
 
-    if(!name) {
+    if (!nombre) {
         return response.status(401).json({ message: 'El campo nombre no debe estar vacío.' });
     }
 
-    if(!password) {
+    if (!password) {
         return response.status(401).json({ message: 'La contraseña no puede estar vacía.' });
     }
 
@@ -30,10 +30,17 @@ export const createUserController = async (request, response) => {
     }
 
     const user = await User.create({
-        name: name,
+        documento,
+        nombre,
+        apellido,
+        estado,
+        email,
         password: await PasswordService.encrypt(password),
-        email: email
+        isAdmin
     });
 
-    return response.set(201).json({});
+    // pasar la ID en la respuesta
+    return response.status(201).json({
+        id: user.id
+    });
 }

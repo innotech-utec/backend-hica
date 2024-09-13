@@ -1,10 +1,32 @@
-GET http://localhost:3000/api/v1/usuarios HTTP/1.1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJmMGQxZGE2ZC02Y2RlLTRlY2EtODA2YS02Nzc0ZmQ1MmUxZWIiLCJpYXQiOjE3MjU0MTU5NTUsImV4cCI6MTcyNTQxOTU1NX0.311ORG0VqJeOO85Nd0NUmbRK_ANyc878_hzfCpBD6wI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3MjYyNjA5ODQsImV4cCI6MTcyNjI2NDU4NH0.svQ9OuZrc0wO7mWP2lPgZGzcJEuV8abggpTf8pVhMyw
 ###
-POST http://localhost:3000/api/v1/login HTTP/1.1
+POST http://localhost:4500/api/v1/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "testuser1@example.com",
-    "password": "password123"
+    "email": "karen@hica.com",
+    "password": "innotech"
 }
+###
+
+GET http://localhost:4500/api/v1/usuarios HTTP/1.1
+Authorization: {{token}}
+###
+
+GET http://localhost:4500/api/v1/veterinarios HTTP/1.1
+Authorization: {{token}}
+###
+
+POST http://localhost:4500/api/v1/veterinarios HTTP/1.1
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "N_de_registro": "12345",
+  "Validado": true,
+  "deviceId": "abcdef123456",
+  "Dependencia": "Veterinaria Central",
+  "Foto": null, 
+  "userId": "34673aab-428b-4c49-8b02-c80ad8d72cd2"
+}
+

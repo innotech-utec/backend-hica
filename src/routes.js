@@ -8,6 +8,9 @@ import { createUserController } from './Users/Controllers/createUserController.j
 import { deleteController } from './Users/Controllers/deleteController.js';
 import { showController } from './Users/Controllers/showController.js';
 import { updateController } from './Users/Controllers/updateController.js';
+//*********_Veterinarios_*********
+import { indexVeterinarioController } from './Users/Controllers/indexVeterinarioController.js';
+import { createVeterinarioController } from './Users/Controllers/createVeterinarioController.js';
 
 
 const router = express.Router()
@@ -21,5 +24,9 @@ router.post('/api/v1/usuarios', token, createUserController);
 router.delete('/api/v1/usuarios/:id', token, deleteController);
 router.get('/api/v1/usuarios/:id', token, showController);
 router.patch('/api/v1/usuarios/:id', token, updateController);
+
+//*********_Veterinarios_*********
+router.get('/api/v1/veterinarios', token, indexVeterinarioController);
+router.post('/api/v1/veterinarios', token, createVeterinarioController);
 
 export { router };
