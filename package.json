@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "test": "nodemon src/database.js"
+    "bd": "nodemon src/migrate.js",
+    "test":"nodemon test/insertUser.js"
   },
   "keywords": [],
   "author": "",
