@@ -6,10 +6,11 @@ import { Sequelize } from "sequelize"
 const sequelize = new Sequelize(
     'hica',
     'innotech',
-    'innotech',
+    'Innotech.2024',
     {
-        host: '172.168.30.30',
-        dialect: 'mysql'
+        host: '10.1.2.4',
+        dialect: 'mysql',
+	port: 3306
     })
 
 export { sequelize };

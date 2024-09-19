@@ -1,7 +1,6 @@
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcrypt';
 
 export class PasswordService {
-
     static saltRounds = 10;
 
     static async encrypt(password) {
@@ -10,7 +9,6 @@ export class PasswordService {
     }
 
     static check(password, hashedPassword) {
-        return bcrypt.compare(password, hashedPassword)
+        return bcrypt.compare(password, hashedPassword);
     }
-
 }

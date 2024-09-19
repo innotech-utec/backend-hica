@@ -1,8 +1,19 @@
-import { TokenService } from "../Services/TokenService.js";
+import { TokenService } from '../Services/TokenService.js';
 
 export const verifyTokenController = (request, response) => {
-    const token = request.headers.authorization;
+    const authHeader = request.headers.authorization;
 
+    // Verifica si el header contiene un token
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return response.status(403).json({
+            message: 'Token no proporcionado o mal formado'
+        });
+    }
+
+    // Extrae el token sin el prefijo 'Bearer'
+    const token = authHeader.split(' ')[1];
+
+    // Valida el token usando el TokenService
     if (TokenService.isValid(token)) {
         return response.json({
             message: "Token válido",
@@ -12,10 +23,11 @@ export const verifyTokenController = (request, response) => {
         });
     }
 
-    return response.json({
+    return response.status(403).json({
         message: "Token inválido",
         data: {
             response: false
         }
     });
-}
+};
+
