@@ -22,7 +22,7 @@ const createConfig = () => {
       port: process.env.DEV_PORT || 4500,
       protocol: 'http',
       corsOptions: {
-        origin: process.env.DEV_FRONTEND_URL || '*',
+        origin: process.env.FRONTEND_URL || '*',
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
@@ -32,7 +32,7 @@ const createConfig = () => {
       port: 4500,
       protocol: 'https',
       corsOptions: {
-        origin: process.env.PROD_FRONTEND_URL,
+        origin: process.env.FRONTEND_URL,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
