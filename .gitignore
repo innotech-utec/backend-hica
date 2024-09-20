@@ -2,3 +2,7 @@ node_modules
 .password
 #archivos de configuracion
 /src/database.js
+
+.env
+.env.local
+.env.*
