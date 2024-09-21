@@ -23,7 +23,7 @@ const createConfig = () => {
       protocol: 'http',
       corsOptions: {
         origin: process.env.FRONTEND_URL || '*',
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS','PATCH'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
       }
@@ -33,7 +33,7 @@ const createConfig = () => {
       protocol: 'https',
       corsOptions: {
         origin: process.env.FRONTEND_URL,
-        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS','PATCH' ],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
       },
