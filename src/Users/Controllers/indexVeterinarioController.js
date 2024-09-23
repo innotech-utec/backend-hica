@@ -5,7 +5,7 @@ export const indexVeterinarioController = async (request, response) => {
 
     try {
         
-        const result = await Veterinario.paginate(4, page);
+        const result = await Veterinario.paginate(6, page);
 
         response.json(result);
     } catch (error) {

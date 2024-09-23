@@ -13,6 +13,8 @@ import { updateController } from './Users/Controllers/updateController.js';
 // *********_Veterinarios_*********
 import { indexVeterinarioController } from './Users/Controllers/indexVeterinarioController.js';
 import { createVeterinarioController } from './Users/Controllers/createVeterinarioController.js';
+import { indexResponsableController } from './Responsables/Controllers/indexResponsableController.js';
+import { createResponsableController } from './Responsables/Controllers/createResponsableController.js';
 
 const router = express.Router();
 
@@ -30,6 +32,10 @@ router.patch('/usuarios/:id', token, updateController);
 // *********_Veterinarios_*********
 router.get('/veterinarios', token, indexVeterinarioController);
 router.post('/veterinarios', token, createVeterinarioController);
+
+// *********_Veterinarios_*********
+router.get('/responsables', token, indexResponsableController);
+router.post('/responsables', token, createResponsableController);
 
 export { router };
 

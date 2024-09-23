@@ -7,6 +7,8 @@ import { Veterinario } from './Users/Models/Veterinarios.js';
 
 await User.sync({ force: false });
 await Veterinario.sync({ force: false });
+await Animal.sync({ force: false });
+await Responsable.sync({ force: false });  
 
 setupRelationships();
 
