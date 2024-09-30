@@ -28,7 +28,7 @@ export default function setupRelationships() {
     // Todo animal debe pertenecer a un responsable
     Animal.belongsTo(Responsable, {
         foreignKey: 'responsableId',
-        as: 'responsables' //alias relacion de responsables con animasles
+        as: 'responsable' //alias relacion de responsables con animasles
     });
 
 }

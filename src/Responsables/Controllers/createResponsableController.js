@@ -20,7 +20,7 @@ export const createResponsableController = async (request, response) => {
         return response.status(401).json({ message: 'El campo domicilio no debe estar vacío.' });
     }
 
-    // Crear nuevo responsable
+  
     try {
         const responsable = await Responsable.create({
             documento,

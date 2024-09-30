@@ -2,6 +2,8 @@ import { Sequelize } from "sequelize"
 import setupRelationships from './relationships.js';
 import { User } from './Users/Models/User.js';
 import { Veterinario } from './Users/Models/Veterinarios.js';
+import { Responsable } from './Responsables/Models/Responsable.js';
+import { Animal } from './Animales/Models/Animal.js';
 
 //Generar BD
 

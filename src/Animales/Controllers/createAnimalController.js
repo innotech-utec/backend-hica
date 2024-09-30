@@ -1,44 +1,35 @@
+import { Animal } from '../Models/Animal.js'; // Asegúrate de que esta ruta sea correcta
+import { Responsable } from '../../Responsables/Models/Responsable.js'; // Asegúrate de que esta ruta sea correcta
 
-import { Animal } from '../Models/Animal.js';
+export const createAnimalController = async (req, res) => {
+  try {
+    
+    const { nombre, especie, raza, edad, responsableId } = req.body;
 
-export const createAnimalController = async (request, response) => {
-    const { nombre, especie, edad, responsableId } = request.body;
-
-    // Validaciones básicas
-    if (!nombre) {
-        return response.status(401).json({ message: 'El nombre del animal no debe estar vacío.' });
+    
+    if (!nombre || !especie || !raza || !edad || !responsableId) {
+      return res.status(400).json({ message: 'Faltan campos requeridos para crear un animal.' });
     }
 
-    if (!especie) {
-        return response.status(401).json({ message: 'La especie del animal no debe estar vacía.' });
+   
+    const responsable = await Responsable.findByPk(responsableId);
+    if (!responsable) {
+      return res.status(404).json({ message: 'El responsable proporcionado no existe.' });
     }
 
-    if (!año || isNaN(edad)) {
-        return response.status(401).json({ message: 'Debe proporcionar una edad válida para el animal.' });
-    }
+    // Crear el nuevo animal en la base de datos
+    const nuevoAnimal = await Animal.create({
+      nombre,
+      especie,
+      raza,
+      edad,
+      responsableId,
+    });
 
-    if (!responsableId) {
-        return response.status(401).json({ message: 'Debe asociar el animal a un responsable.' });
-    }
-
-    // Crear el nuevo animal
-    try {
-        const animal = await Animal.create({
-            nombre,
-            especie,
-            edad,
-            responsableId
-        });
-
-        // Responder con éxito y enviar la ID del nuevo animal
-        return response.status(201).json({
-            id: animal.id,
-            message: 'Animal creado con éxito.'
-        });
-    } catch (error) {
-        return response.status(500).json({
-            message: 'Error al crear el animal.',
-            error: error.message
-        });
-    }
+    // Devolver el animal creado
+    res.status(201).json(nuevoAnimal);
+  } catch (error) {
+    console.error('Error al crear el animal:', error);
+    res.status(500).json({ message: 'Error al crear el animal. Por favor, intente nuevamente.' });
+  }
 };
