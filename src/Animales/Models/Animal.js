@@ -1,6 +1,5 @@
-// ./Animales/Models/Animal.js
 import { Sequelize, DataTypes } from "sequelize";
-import { sequelize } from "../../database.js"; // Asegúrate de que esta ruta sea correcta
+import { sequelize } from "../../database.js";
 
 const Animal = sequelize.define('animales', {
   id: {
@@ -24,46 +23,21 @@ const Animal = sequelize.define('animales', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  sexo: {
+    type: DataTypes.ENUM('HEMBRA', 'MACHO'),
+    allowNull: false,
+  },
+  peso: {
+    type: DataTypes.DECIMAL(5, 2), // Se asume un valor máximo de 999.99 kg
+    allowNull: true,
+  },
   responsableId: {
     type: DataTypes.UUID,
     allowNull: false,
   },
 }, {
-  timestamps: true,  
+  timestamps: true,
   paranoid: true,
-
 });
-
-Animal.paginate = async (records = 10, page = 1) => {
-  const offset = records * (page - 1);
-
-  // Obtener los registros con el límite y el offset
-  const animales = await Animal.findAll({
-    limit: records,
-    offset: offset,
-    include: [
-      {
-        model: sequelize.models.Responsable, // Incluir el modelo `Responsable`
-        as: 'responsable',
-      }
-    ]
-  });
-
-  // Contar el total de registros
-  const totalRecords = await Animal.count();
-  const lastPage = Math.ceil(totalRecords / records);
-
-  return {
-    data: animales, // Corregido para devolver `animales`
-    meta: {
-      current: page,
-      records: records,
-      next: (lastPage >= page + 1) ? page + 1 : null,
-      last: lastPage,
-      totalRecords: totalRecords,
-    },
-  };
-};
-
 
 export { Animal };

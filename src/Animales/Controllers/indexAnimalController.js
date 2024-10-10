@@ -1,15 +1,27 @@
-// ./Animales/Controllers/indexAnimalController.js
+// Archivo: src/Animales/Controllers/indexAnimalController.js
+
 import { Animal } from '../Models/Animal.js';
-import { Responsable } from '../../Responsables/Models/Responsable.js'; 
+import { Responsable } from '../../Responsables/Models/Responsable.js';
 
 export const indexAnimalController = async (req, res) => {
   try {
+    // Verificar la relación entre Animal y Responsable
+    console.log('Verificando relación entre Animal y Responsable...');
+    const relacionResponsable = Animal.associations.responsable;
+    if (!relacionResponsable) {
+      console.error('Error: Relación no definida correctamente entre Animal y Responsable');
+      return res.status(500).json({ message: 'Relación no definida correctamente entre Animal y Responsable' });
+    }
+
+    // Consultar los animales con su responsable usando el alias correcto
     const animales = await Animal.findAll({
       include: {
-        model: Responsable, // Incluye la relación con Responsable si es necesario
-        as: 'responsable'
+        model: Responsable,
+        as: 'responsable', // Asegúrate de que coincide con el alias definido en `relationships.js`
+        attributes: ['nombre', 'apellido', 'documento'], // Selecciona los atributos del responsable
       },
-      order: [['createdAt', 'DESC']] // Ordena los resultados por fecha de creación
+      attributes: ['id', 'nombre', 'especie', 'raza', 'edad', 'sexo', 'peso', 'responsableId', 'createdAt'],
+      order: [['createdAt', 'DESC']], // Ordenar por fecha de creación
     });
 
     res.status(200).json(animales);

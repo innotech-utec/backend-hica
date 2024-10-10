@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../../database.js";
-import { User } from "./User.js";  // Importa el modelo de User para la relación
+import { User } from "./User.js";  
 
 const Veterinario = sequelize.define('veterinarios', {
     N_de_registro: {
@@ -40,28 +40,34 @@ const Veterinario = sequelize.define('veterinarios', {
 
 
 Veterinario.paginate = async (records, page) => {
-    const veterinarios = await Veterinario.findAll({
+    try {
+      const veterinarios = await Veterinario.findAll({
         limit: records,
         offset: records * (page - 1),
         include: [{
-            model: User,
-            attributes: ['id', 'documento', 'nombre', 'apellido', 'email']  // Incluye los atributos del usuario
-        }]
-    });
-
-    const totalCount = await Veterinario.count();
-    const lastPage = Math.ceil(totalCount / records);
-
-    return {
+          model: User,
+          as: 'user',  // Asegúrate de que coincide con el alias en la definición de la relación
+          attributes: ['id', 'nombre', 'apellido', 'email'],  // Solo trae los campos necesarios
+        }],
+      });
+  
+      const totalCount = await Veterinario.count();
+      const lastPage = Math.ceil(totalCount / records);
+  
+      return {
         data: veterinarios.map(vet => vet.toJSON()),  // Convierte los objetos Sequelize a JSON
         meta: {
-            current: page,
-            records: records,
-            next: (lastPage >= page + 1) ? page + 1 : null,
-            last: lastPage
-        }
-    };
-};
+          current: page,
+          records: records,
+          next: (lastPage >= page + 1) ? page + 1 : null,
+          last: lastPage,
+        },
+      };
+    } catch (error) {
+      console.error('Error al paginar veterinarios:', error);
+      throw error;
+    }
+  };  
 
 
 export { Veterinario };

@@ -1,6 +1,6 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3MjYyNjA5ODQsImV4cCI6MTcyNjI2NDU4NH0.svQ9OuZrc0wO7mWP2lPgZGzcJEuV8abggpTf8pVhMyw
-###
-POST http://localhost:4500/api/v1/login HTTP/1.1
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MTY3MDlkNy0yYzM3LTQzOWYtYjZiNy03ZWY3MGQ1ODlmMWQiLCJpYXQiOjE3MjgyNjA2NjAsImV4cCI6MTcyODI2NDI2MH0.synuPtpOwXQoyHoiV5UaDejpVQ3fPn7oVcHrmluAPvU
+##
+POST http://localhost:4500/api/v10/login HTTP/1.1
 Content-Type: application/json
 
 {
@@ -9,15 +9,15 @@ Content-Type: application/json
 }
 ###
 
-GET http://localhost:4500/api/v1/usuarios HTTP/1.1
+GET http://localhost:4500/api/v10/usuarios HTTP/1.1
 Authorization: {{token}}
 ###
 
-GET http://localhost:4500/api/v1/veterinarios HTTP/1.1
+GET http://localhost:4500/api/v10/veterinarios HTTP/1.1
 Authorization: {{token}}
 ###
 
-POST http://localhost:4500/api/v1/veterinarios HTTP/1.1
+POST http://localhost:4500/api/v10/veterinarios HTTP/1.1
 Authorization: {{token}}
 Content-Type: application/json
 
