@@ -1,20 +1,15 @@
-import { Responsable } from '../Models/Responsable.js';
-import { Animal } from '../../Animales/Models/Animal.js';
+import { Responsable } from '../Models/Responsable.js'; // Asegúrate de que la ruta al modelo es correcta
 
-export const indexResponsableController = async (request, response) => {
-    const page = parseInt(request.query.page) || 1;
+export const indexResponsableController = async (req, res) => {
+  try {
+    // Obtener todos los responsables de la base de datos
+    const responsables = await Responsable.findAll(); 
+    console.log('Responsables obtenidos:', responsables); // Mostrar los datos en la consola para verificar
 
-    // Aquí puedes usar la relación sin declararla nuevamente
-    const responsables = await Responsable.findAll({
-        limit: 4,
-        offset: (page - 1) * 4,
-        include: [
-            {
-                model: Animal,
-                as: 'animales'  // Este alias viene de la relación definida en setupRelationships.js
-            }
-        ]
-    });
-
-    response.json(responsables);
+    // Enviar los responsables en la respuesta
+    res.status(200).json(responsables);
+  } catch (error) {
+    console.error('Error al obtener la lista de responsables:', error);
+    res.status(500).json({ message: 'Error al obtener la lista de responsables' });
+  }
 };

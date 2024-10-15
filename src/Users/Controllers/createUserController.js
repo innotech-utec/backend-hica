@@ -23,7 +23,7 @@ export const createUserController = async (request, response) => {
         return response.status(401).json({ message: 'La contraseña no puede estar vacía.' });
     }
 
-    const strongPasswordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    const strongPasswordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/;
 
     if (!strongPasswordRegex.test(password)) {
         return response.status(401).json({ message: 'Por favor, ingrese una contraseña más segura' });
