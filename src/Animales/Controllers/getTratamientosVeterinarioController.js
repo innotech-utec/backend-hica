@@ -2,20 +2,17 @@ import { Tratamiento } from '../Models/Tratamiento.js';
 import { FichaClinica } from '../Models/FichaClinica.js';
 import { Veterinario } from '../../Users/Models/Veterinarios.js';
 
-export const indexTratamientoController = async (req, res) => {
+export const getTratamientosVeterinarioController = async (req, res) => {
   try {
-    const { fichaClinicaId } = req.params;
+    const { veterinarioId } = req.params;
 
-    if (!fichaClinicaId) {
-      return res.status(400).json({ message: 'El ID de la ficha es requerido.' });
+    if (!veterinarioId) {
+      return res.status(400).json({ message: 'El ID del veterinario es requerido.' });
     }
 
     // Consultar los tratamientos asociados al animal
     const tratamientos = await Tratamiento.findAll({
-      where: { fichaClinicaId },
-      include: [
-        { model: Veterinario, as: 'veterinario' } // Incluir el modelo de veterinario (usuario)
-      ],
+      where: { veterinarioId },
       attributes: ['id', 'fecha', 'hora', 'medicacion', 'observaciones', 'estadoAutorizacion', 'fichaClinicaId', 'veterinarioId', 'createdAt'],
       order: [['createdAt', 'DESC']] // Ordenar los resultados por la fecha de creación
     });

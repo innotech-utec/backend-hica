@@ -40,9 +40,9 @@ export default function setupRelationships() {
   FichaClinica.hasMany(Tratamiento, { foreignKey: 'fichaClinicaId', as: 'tratamientos', onDelete: 'CASCADE' });
   Tratamiento.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
 
-  // Relación entre Tratamiento y Veterinario (Usuario)
-  User.hasMany(Tratamiento, { foreignKey: 'veterinarioId', as: 'tratamientos', onDelete: 'CASCADE' });
-  Tratamiento.belongsTo(User, { foreignKey: 'veterinarioId', as: 'veterinario' });
+  // Relación entre Tratamiento y Veterinario
+  Veterinario.hasMany(Tratamiento, { foreignKey: 'veterinarioId', as: 'tratamientos', onDelete: 'CASCADE' });
+  Tratamiento.belongsTo(Veterinario, { foreignKey: 'veterinarioId', as: 'veterinario' });
 
   // Relación de Registro de Parámetros con Animal
   Animal.hasMany(RegistroParametros, { foreignKey: 'animalId', as: 'registroParametros', onDelete: 'CASCADE' });

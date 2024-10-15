@@ -1,5 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1MTY3MDlkNy0yYzM3LTQzOWYtYjZiNy03ZWY3MGQ1ODlmMWQiLCJpYXQiOjE3MjgyNjA2NjAsImV4cCI6MTcyODI2NDI2MH0.synuPtpOwXQoyHoiV5UaDejpVQ3fPn7oVcHrmluAPvU
-##
+@token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg3MDA4MTEsImV4cCI6MTcyODcwNDQxMX0.oRmhXJ79ZVFOm_QFR3t3wj-SCvHe2Alb5XhBY7pWdKY'
+###
 POST http://localhost:4500/api/v10/login HTTP/1.1
 Content-Type: application/json
 
@@ -10,14 +10,22 @@ Content-Type: application/json
 ###
 
 GET http://localhost:4500/api/v10/usuarios HTTP/1.1
-Authorization: {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg3MDA4MTEsImV4cCI6MTcyODcwNDQxMX0.oRmhXJ79ZVFOm_QFR3t3wj-SCvHe2Alb5XhBY7pWdKY
+###
+
+GET http://localhost:4500/api/v10/usuarios/724e17fe-56e2-47a0-97e8-a28388d7ec42 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3MjgwMDE5NzksImV4cCI6MTcyODAwNTU3OX0.pheFzEnaZES2ACvzop2yJb-kdeTCOXl4p07XjZjj5_Q
 ###
 
 GET http://localhost:4500/api/v10/veterinarios HTTP/1.1
-Authorization: {{token}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg3MzkzMTcsImV4cCI6MTcyODc0MjkxN30.CjblVXs-NUnDcJD_2WBKQfV9vgDcokz2XEwY19bu8_I
+###
+GET http://localhost:4500/api/v10/veterinarios/724e17fe-56e2-47a0-97e8-a28388d7ec42 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg4NzA2NzEsImV4cCI6MTcyODg3NDI3MX0.r-OVbOln_dKlplOEdYHpB7iCcK_bE6VBe9aH78BUSF0
+
 ###
 
-POST http://localhost:4500/api/v10/veterinarios HTTP/1.1
+POST http://localhost:4500/api/v1/veterinarios HTTP/1.1
 Authorization: {{token}}
 Content-Type: application/json
 
@@ -29,4 +37,10 @@ Content-Type: application/json
   "Foto": null, 
   "userId": "34673aab-428b-4c49-8b02-c80ad8d72cd2"
 }
+###
+GET http://localhost:4500/api/v10/animales/ficha-clinica?fichaClinicaId=6784637c-4855-489b-9a48-b20fca9b7ccc&animalId=d0ce982a-2c1f-4118-9c70-5c135aff4d7a HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg3NDA2NzQsImV4cCI6MTcyODc0NDI3NH0.SnxqrFIM2_koCv-p21GJSsNjvm2gTJVPJ_Px9QPQpBk
 
+###
+PUT http://localhost:4500/api/v10/tratamientos/ba1a3a91-9957-41cf-b063-2bc2747eab9a/APROBADO HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg5MTgwODksImV4cCI6MTcyODkyMTY4OX0.LBYATjhCGYy41KMdb3lrNPcbMM_RaQjsYjkiognqCRE

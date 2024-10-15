@@ -1,9 +1,11 @@
 import { Tratamiento } from '../Models/Tratamiento.js';
 import { Animal } from '../Models/Animal.js';
-import { User } from '../../Users/Models/User.js';
+import { Veterinario } from '../../Users/Models/Veterinarios.js';
+
 
 export const createTratamientoController = async (req, res) => {
   try {
+    console.log('Cuerpo de la solicitud:', req.body);
     const { fecha, hora, medicacion, observaciones, estadoAutorizacion = 'PENDIENTE', animalId, veterinarioId, fichaClinicaId } = req.body;
 
     if (!animalId || !veterinarioId || !fichaClinicaId || !fecha || !hora || !medicacion) {
@@ -16,7 +18,7 @@ export const createTratamientoController = async (req, res) => {
     }
 
     // Validar la existencia del veterinario
-    const veterinario = await User.findByPk(veterinarioId);
+    const veterinario = await Veterinario.findByPk(veterinarioId);
     if (!veterinario) {
       return res.status(404).json({ message: 'El veterinario proporcionado no existe.' });
     }

@@ -1,7 +1,6 @@
 import { User } from '../../Users/Models/User.js'; 
-import { Veterinario } from '../../Users/Models/Veterinarios.js';  
-
-
+import { Veterinario } from '../../Users/Models/Veterinarios.js';
+import { sequelize } from '../../database.js'; // Asegúrate de importar tu instancia de Sequelize
 
 export const createVeterinarioController = async (request, response) => {
   const { N_de_registro, Validado, deviceId, Dependencia, Foto, userId } = request.body;
@@ -17,10 +16,13 @@ export const createVeterinarioController = async (request, response) => {
     return response.status(400).json({ message: 'El campo userId es obligatorio.' });
   }
 
+  const t = await sequelize.transaction();
+
   try {
     // Verificar si el usuario existe en la base de datos
-    const user = await User.findByPk(userId);
+    const user = await User.findByPk(userId, { transaction: t });
     if (!user) {
+      await t.rollback();
       return response.status(404).json({ message: 'Usuario no encontrado.' });
     }
 
@@ -32,26 +34,29 @@ export const createVeterinarioController = async (request, response) => {
       Dependencia,
       Foto: Foto || null,           
       userId  
-    },
-      { include: [{ model: User }] }                   
-    );
+    }, { transaction: t });
 
-    console.log('Veterinario creado con éxito:', veterinario); // Mensaje para confirmar la creación
+    await t.commit();
+
+    console.log('Veterinario creado con éxito:', veterinario);
 
     return response.status(201).json({
-    veterinario: {
-      id: veterinario.id,
-      N_de_registro: veterinario.N_de_registro,
-      Validado: veterinario.Validado,
-      deviceId: veterinario.deviceId,
-      Dependencia: veterinario.Dependencia,
-      Foto: veterinario.Foto,
-      userId: veterinario.userId
-    }
-    
+      veterinario: {
+        id: veterinario.id,
+        N_de_registro: veterinario.N_de_registro,
+        Validado: veterinario.Validado,
+        deviceId: veterinario.deviceId,
+        Dependencia: veterinario.Dependencia,
+        Foto: veterinario.Foto,
+        userId: veterinario.userId
+      }
     });
   } catch (error) {
+    await t.rollback();
     console.error('Error al crear veterinario:', error);
+    if (error.name === 'SequelizeUniqueConstraintError') {
+      return response.status(400).json({ message: 'Ya existe un veterinario con ese número de registro o dispositivo.' });
+    }
     return response.status(500).json({ message: 'Error al crear veterinario.' });
   }
 };
