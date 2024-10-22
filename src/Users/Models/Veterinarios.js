@@ -22,7 +22,7 @@ const Veterinario = sequelize.define('veterinarios', {
         allowNull: false
     },
     Foto: {
-        type: DataTypes.STRING,
+      type: DataTypes.BLOB('long'),
         allowNull: true
     },
     userId: {  // Relación 1:1 con la tabla User

@@ -40,6 +40,7 @@ import {getFichaClinicaByIdController} from './Animales/Controllers/ getFichaCli
 // Importar el controlador de veterinario
 import { createVeterinarioController } from './Users/Controllers/createVeterinarioController.js';
 import { indexVeterinarioController } from './Users/Controllers/indexVeterinarioController.js';
+import { updateVeterinarioController } from './Users/Controllers/updateVeterinarioController.js';
 
 const router = express.Router();
 
@@ -89,9 +90,11 @@ router.get('/historiaClinica/:animalId', token, getHistoriaClinicaController);
 router.post('/historiaClinica', token, createHistoriaClinicaController);
 
 // Agregar las rutas de veterinarios
-router.get('/veterinarios', token, indexVeterinarioController);    // Ruta para obtener veterinarios
+router.get('/veterinarios', token, indexVeterinarioController);    
 router.get('/veterinarios/:userId', token, showVeterinarioController);
-router.post('/veterinarios', token, createVeterinarioController);  // Ruta para crear veterinarios
+router.post('/veterinarios', token, createVeterinarioController);  
+router.patch('/veterinarios/:userId', updateVeterinarioController);
+
 
 // Exportar el router
 export { router };
