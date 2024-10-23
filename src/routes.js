@@ -15,6 +15,8 @@ import { updateController } from './Users/Controllers/updateController.js';
 import { indexResponsableController } from './Responsables/Controllers/indexResponsableController.js';
 import { createResponsableController } from './Responsables/Controllers/createResponsableController.js';
 import { showResponsableController } from './Responsables/Controllers/showResponsableController.js';
+import { updateResponsableController } from './Responsables/Controllers/updateResponsableController.js';
+import { deleteResponsableController } from './Responsables/Controllers/deleteResponsableController.js';
 
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
@@ -27,7 +29,7 @@ import { createExamenObjetivoController } from './Animales/Controllers/createExa
 import { indexExamenObjetivoController } from './Animales/Controllers/indexExamenObjetivoController.js';
 import { createTratamientoController } from './Animales/Controllers/createTratamientoController.js';
 import { indexTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
-import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
+
 import { createRegistroParametrosController } from './Animales/Controllers/createRegistroParametrosController.js';
 import { indexRegistroParametrosController } from './Animales/Controllers/indexRegistroParametrosController.js';
 import { getHistoriaClinicaController } from './Animales/Controllers/getHistoriaClinicaController.js';
@@ -40,6 +42,8 @@ import {getFichaClinicaByIdController} from './Animales/Controllers/ getFichaCli
 // Importar el controlador de veterinario
 import { createVeterinarioController } from './Users/Controllers/createVeterinarioController.js';
 import { indexVeterinarioController } from './Users/Controllers/indexVeterinarioController.js';
+import { updateVeterinarioController } from './Users/Controllers/updateVeterinarioController.js';
+import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
 
 const router = express.Router();
 
@@ -58,6 +62,8 @@ router.patch('/usuarios/:id', token, updateController);
 router.get('/responsables', token, indexResponsableController); 
 router.post('/responsables', token, createResponsableController); 
 router.get('/responsables/:id', token, showResponsableController);
+router.patch('/responsables/:id', token, updateResponsableController);
+router.delete('/responsables/:id', token, deleteResponsableController)
 
 // Rutas de animales
 router.get('/animales', token, indexAnimalController); 
@@ -89,9 +95,12 @@ router.get('/historiaClinica/:animalId', token, getHistoriaClinicaController);
 router.post('/historiaClinica', token, createHistoriaClinicaController);
 
 // Agregar las rutas de veterinarios
-router.get('/veterinarios', token, indexVeterinarioController);    // Ruta para obtener veterinarios
+router.get('/veterinarios', token, indexVeterinarioController);    
 router.get('/veterinarios/:userId', token, showVeterinarioController);
-router.post('/veterinarios', token, createVeterinarioController);  // Ruta para crear veterinarios
+router.post('/veterinarios', token, createVeterinarioController);  
+router.patch('/veterinarios/:userId', updateVeterinarioController);
+router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
+
 
 // Exportar el router
 export { router };

@@ -60,6 +60,7 @@ async function startServer() {
     app.use(cors(config.corsOptions));
     app.use(express.json());
     app.use('/api/v10', router);
+ 
 
     let server;
     if (config.protocol === 'https') {

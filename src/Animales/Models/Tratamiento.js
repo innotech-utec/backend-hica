@@ -34,7 +34,7 @@ const Tratamiento = sequelize.define('tratamientos', {
     type: DataTypes.UUID,
     allowNull: false,
   },
-  veterinarioId: { // Añadimos el campo de responsable
+  veterinarioId: { // Añadimos el campo del responsable del tratamiento
     type: DataTypes.UUID,
     allowNull: false,
   },

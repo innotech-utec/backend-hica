@@ -6,7 +6,10 @@ export const indexVeterinarioController = async (request, response) => {
     const veterinarios = await Veterinario.findAll({
       include: [{
         model: User,
-        as: 'user',  
+        as: 'user', 
+        where: {
+          deletedAt: null  // Excluye usuarios eliminados con soft delete (paranoid)
+        }, 
         attributes: ['id', 'nombre', 'apellido', 'email']  
       }],
       attributes: ['id', 'N_de_registro', 'Validado'],  
