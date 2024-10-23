@@ -32,7 +32,7 @@ export const createVeterinarioController = async (request, response) => {
       Validado: Validado || false,  
       deviceId: deviceId || null, 
       Dependencia,
-      Foto,          
+      Foto: Foto ? Buffer.from(Foto, 'base64') : null, 
       userId  
     }, { transaction: t });
 

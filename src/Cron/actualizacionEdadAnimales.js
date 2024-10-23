@@ -17,8 +17,8 @@ const actualizarEdadAnimales = () => {
                         where: { id: animal.id }
                     });
                 }
-            });
-
+            });t
+f
             console.log('Edades actualizadas.');
         } catch (error) {
             console.error('Error al actualizar las edades:', error);

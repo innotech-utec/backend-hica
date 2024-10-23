@@ -21,6 +21,7 @@ import { deleteResponsableController } from './Responsables/Controllers/deleteRe
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
 import { autorizacionController } from './Animales/Controllers/autorizacionController.js';
+import { updateAnimalController } from './Animales/Controllers/updateAnimalController.js';
 
 
 import { createFichaClinicaController } from './Animales/Controllers/createFichaClinicaController.js';
@@ -69,6 +70,7 @@ router.delete('/responsables/:id', token, deleteResponsableController)
 router.get('/animales', token, indexAnimalController); 
 router.post('/animales', token, createAnimalController);
 router.get('/animales/:id', token, showAnimalController);
+router.patch('/animales/:animalId', token, updateAnimalController);
 
 // Rutas de fichas clínicas
 router.get('/fichasClinicas/animal/:animalId', token, indexFichaClinicaController);
