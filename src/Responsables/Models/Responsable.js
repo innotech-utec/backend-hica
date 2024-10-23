@@ -20,11 +20,7 @@ const Responsable = sequelize.define('responsables', {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
-  estado: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: true,
-  },
+  
   domicilio: {
     type: DataTypes.STRING(50),
     allowNull: false,

@@ -1,7 +1,7 @@
 import { Responsable } from '../Models/Responsable.js';
 
 export const createResponsableController = async (request, response) => {
-    const { documento, nombre, apellido, estado, domicilio } = request.body;
+    const { documento, nombre, apellido, domicilio } = request.body;
 
     // Validaciones
     if (!documento) {
@@ -26,7 +26,6 @@ export const createResponsableController = async (request, response) => {
             documento,
             nombre,
             apellido,
-            estado: estado ?? true,  
             domicilio
         });
 
