@@ -43,8 +43,9 @@ const FichaClinica = sequelize.define('fichasClinicas', {
     type: DataTypes.UUID,
     allowNull: false,
   },
-  estado: {
-    type: DataTypes.ENUM('ABIERTO', 'CERRADO'),
+  estadoFichaClinica: {
+    type: DataTypes.ENUM('ALTA', 'INGRESADO','INTERNADO', 'FALLECIMIENTO', 'EUTANASIA'),
+    defaultValue: 'INGRESADO', // Valor por defecto
     allowNull: false,
   },
 }, {

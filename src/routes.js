@@ -21,14 +21,18 @@ import { deleteResponsableController } from './Responsables/Controllers/deleteRe
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
 import { autorizacionController } from './Animales/Controllers/autorizacionController.js';
+import { updateAnimalController } from './Animales/Controllers/updateAnimalController.js';
 
 
 import { createFichaClinicaController } from './Animales/Controllers/createFichaClinicaController.js';
 import { indexFichaClinicaController } from './Animales/Controllers/indexFichaClinicaController.js';
 import { createExamenObjetivoController } from './Animales/Controllers/createExamenObjetivoController.js';
 import { indexExamenObjetivoController } from './Animales/Controllers/indexExamenObjetivoController.js';
+import { getExamenObjetivoByFichaController } from './Animales/Controllers/getExamenObjetivoByFichaController.js';
 import { createTratamientoController } from './Animales/Controllers/createTratamientoController.js';
 import { indexTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
+import { updateTratamientoController } from './Animales/Controllers/udpateTratamientoController.js';
+
 
 import { createRegistroParametrosController } from './Animales/Controllers/createRegistroParametrosController.js';
 import { indexRegistroParametrosController } from './Animales/Controllers/indexRegistroParametrosController.js';
@@ -38,12 +42,14 @@ import { showAnimalController } from './Animales/Controllers/showAnimalControlle
 import { indexFichaClinicaAbiertaController } from './Animales/Controllers/indexFichaClinicaAbiertaController.js';
 
 import {getFichaClinicaByIdController} from './Animales/Controllers/ getFichaClinicaByIdController.js';
+import { updateFichaClinicaController } from './Animales/Controllers/udpateFichaClinicaController.js';
 
 // Importar el controlador de veterinario
 import { createVeterinarioController } from './Users/Controllers/createVeterinarioController.js';
 import { indexVeterinarioController } from './Users/Controllers/indexVeterinarioController.js';
 import { updateVeterinarioController } from './Users/Controllers/updateVeterinarioController.js';
 import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
+import { updateExamenObjetivoController } from './Animales/Controllers/udpateExamenObjetivoController.js';
 
 const router = express.Router();
 
@@ -69,22 +75,28 @@ router.delete('/responsables/:id', token, deleteResponsableController)
 router.get('/animales', token, indexAnimalController); 
 router.post('/animales', token, createAnimalController);
 router.get('/animales/:id', token, showAnimalController);
+router.patch('/animales/:animalId', token, updateAnimalController);
 
 // Rutas de fichas clínicas
 router.get('/fichasClinicas/animal/:animalId', token, indexFichaClinicaController);
 router.get('/fichasClinicas/abiertas/:animalId', token, indexFichaClinicaAbiertaController); // Ruta para obtener fichas clínicas abiertas
 router.get('/fichasClinicas/:id', token, getFichaClinicaByIdController);
 router.post('/fichasClinicas', token, createFichaClinicaController);
+router.patch('/fichasClinicas/:fichaClinicaId', token, updateFichaClinicaController);
+
 
 // Rutas de exámenes objetivos
 router.get('/examenObjetivo/:animalId', token, indexExamenObjetivoController);
 router.post('/examenObjetivo', token, createExamenObjetivoController);
+router.get('/examenObjetivo/fichaClinica/:fichaClinicaId', token, getExamenObjetivoByFichaController);
+router.patch('/examenObjetivo/:id',token, updateExamenObjetivoController);
 
 // Rutas de tratamientos
 router.get('/tratamientos/:fichaClinicaId', token, indexTratamientoController);
 router.get('/tratamientos/veterinario/:veterinarioId', token, getTratamientosVeterinarioController);
 router.post('/tratamientos', token, createTratamientoController);
 router.put('/tratamientos/:id/:nuevoEstado', autorizacionController);
+router.patch('/tratamientos/:id',token, updateTratamientoController);
 
 // Rutas de registros de parámetros
 router.get('/registroParametros/:animalId', token, indexRegistroParametrosController);
