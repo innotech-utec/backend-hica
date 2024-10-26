@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../../database.js";
+import { FichaClinica } from "./FichaClinica.js"; // Asegúrate de tener correctamente el modelo FichaClinica
 
 const ExamenObjetivo = sequelize.define('examenObjetivo', {
   id: {
@@ -70,11 +71,16 @@ const ExamenObjetivo = sequelize.define('examenObjetivo', {
   fichaClinicaId: {
     type: DataTypes.UUID,
     allowNull: false,
+    references: {
+      model: FichaClinica, // Relación con el modelo FichaClinica
+      key: 'id',
+    },
     unique: true, // Relación 1 a 1 con Ficha Clínica
   },
 }, {
   timestamps: true,
   paranoid: true,
 });
+
 
 export { ExamenObjetivo };

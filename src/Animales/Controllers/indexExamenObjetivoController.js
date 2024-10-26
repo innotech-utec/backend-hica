@@ -1,15 +1,21 @@
 import { ExamenObjetivo } from '../Models/ExamenObjetivo.js';
-import { Animal } from '../Models/Animal.js';
+import { FichaClinica } from '../Models/FichaClinica.js';
 
 export const indexExamenObjetivoController = async (req, res) => {
   try {
-    const { animalId } = req.params;
+    const { fichaClinicaId } = req.params;
 
-    if (!animalId) {
-      return res.status(400).json({ message: 'El ID del animal es requerido.' });
+    if (!fichaClinicaId) {
+      return res.status(400).json({ message: 'El ID de la ficha clínica es requerido.' });
     }
 
-    const examenes = await ExamenObjetivo.findAll({ where: { animalId }, include: { model: Animal, as: 'animal' } });
+    // Buscar el examen objetivo asociado a la ficha clínica
+    const examenes = await ExamenObjetivo.findAll({ where: { fichaClinicaId }, include: { model: FichaClinica, as: 'fichaClinica' } });
+    
+    if (examenes.length === 0) {
+      return res.status(404).json({ message: 'No se encontraron exámenes para la ficha clínica.' });
+    }
+
     res.status(200).json(examenes);
   } catch (error) {
     console.error('Error al obtener los exámenes objetivos:', error);
