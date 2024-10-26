@@ -36,6 +36,8 @@ import { updateTratamientoController } from './Animales/Controllers/udpateTratam
 
 import { createRegistroParametrosController } from './Animales/Controllers/createRegistroParametrosController.js';
 import { indexRegistroParametrosController } from './Animales/Controllers/indexRegistroParametrosController.js';
+import { getRegistroDeParametrosByFichaController } from './Animales/Controllers/getRegistroDeParametrosByFichaController.js';
+
 import { getHistoriaClinicaController } from './Animales/Controllers/getHistoriaClinicaController.js';
 import { createHistoriaClinicaController } from './Animales/Controllers/createHistoriaClinicaController.js';
 import { showAnimalController } from './Animales/Controllers/showAnimalController.js';
@@ -101,6 +103,7 @@ router.patch('/tratamientos/:id',token, updateTratamientoController);
 // Rutas de registros de parámetros
 router.get('/registroParametros/:animalId', token, indexRegistroParametrosController);
 router.post('/registroParametros', token, createRegistroParametrosController);
+router.get('/registroParametros/fichaClinica/:fichaClinicaId', token, getRegistroDeParametrosByFichaController);
 
 // Ruta de historia clínica completa
 router.get('/historiaClinica/:animalId', token, getHistoriaClinicaController);
