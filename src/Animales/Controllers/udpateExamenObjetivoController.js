@@ -1,9 +1,8 @@
 import { ExamenObjetivo } from '../Models/ExamenObjetivo.js';
 
-
 export const updateExamenObjetivoController = async (req, res) => {
   try {
-    const { id } = req.params; // 
+    const { id } = req.params;
 
     const {
       FC,
@@ -23,31 +22,40 @@ export const updateExamenObjetivoController = async (req, res) => {
       observaciones,
     } = req.body;
 
-    // Buscar el tratamiento por su ID
+    // Buscar el examen por su ID
     const examen = await ExamenObjetivo.findByPk(id);
 
     if (!examen) {
       return res.status(404).json({ message: 'Examen Objetivo no encontrado' });
     }
 
-    // Actualizar los campos del tratamiento
-    examen.FC = FC;
-    examen.Resp = Resp;
-    examen.temperatura = temperatura;
+    // Validaciones para campos numéricos
+    if (!FC || isNaN(parseInt(FC))) {
+      return res.status(400).json({ message: 'El campo "FC" debe ser un número.' });
+    }
+    if (!Resp || isNaN(parseInt(Resp))) {
+      return res.status(400).json({ message: 'El campo "Resp" debe ser un número.' });
+    }
+    if (temperatura !== undefined && temperatura !== '' && isNaN(parseFloat(temperatura))) {
+      return res.status(400).json({ message: 'El campo "temperatura" debe ser un número.' });
+    }
+
+    // Actualizar los campos del examen
+    examen.FC = parseInt(FC, 10);
+    examen.Resp = parseInt(Resp, 10);
+    examen.temperatura = temperatura ? parseFloat(temperatura) : null;
     examen.condicionCorporal = condicionCorporal;
     examen.sensorio = sensorio;
-    examen.fascies=fascies
+    examen.fascies = fascies;
     examen.gangliosLinfaticos = gangliosLinfaticos;
     examen.pielSubcutaneo = pielSubcutaneo;
     examen.mucosasAparentes = mucosasAparentes;
     examen.grandesFuncionales = grandesFuncionales;
-    examen.actitudesAnomalas=actitudesAnomalas;
+    examen.actitudesAnomalas = actitudesAnomalas;
     examen.EOP = EOP;
     examen.paraclinicos = paraclinicos;
     examen.diagnostico = diagnostico;
-    examen.observaciones=observaciones;
-
-
+    examen.observaciones = observaciones;
 
     // Guardar los cambios
     await examen.save();

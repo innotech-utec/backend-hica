@@ -13,7 +13,7 @@ export default function setupRelationships() {
 
 
   //usuarui vet
-  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario' });
+  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario', onDelete: 'CASCADE'  });
   Veterinario.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
   // Relación entre Responsable y Animales (Responsable es propietario)
