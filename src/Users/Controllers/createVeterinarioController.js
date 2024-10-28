@@ -3,8 +3,8 @@ import { Veterinario } from '../../Users/Models/Veterinarios.js';
 import { sequelize } from '../../database.js'; // Asegúrate de importar tu instancia de Sequelize
 
 export const createVeterinarioController = async (request, response) => {
-  const { N_de_registro, Validado, deviceId, Dependencia, userId } = request.body;
-  const Foto = request.file ? request.file.filename : null;
+  const { N_de_registro, Validado, deviceId, Dependencia, userId, Foto } = request.body;
+  //const Foto = request.file ? request.file.filename : null;
   // Validar campos obligatorios
   if (!N_de_registro) {
     return response.status(400).json({ message: 'El campo N_de_registro no puede estar vacío.' });

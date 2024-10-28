@@ -4,8 +4,8 @@ POST http://localhost:4500/api/v10/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "karen@hica.com",
-    "password": "innotech"
+    "email": "eli@hica.com",
+    "password": "Hica@1607"
 }
 ###
 
@@ -18,10 +18,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlM
 ###
 
 GET http://localhost:4500/api/v10/veterinarios HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg3MzkzMTcsImV4cCI6MTcyODc0MjkxN30.CjblVXs-NUnDcJD_2WBKQfV9vgDcokz2XEwY19bu8_I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ODEzMGRlOS1iMGQ1LTQ4NjUtYmQ1MC0wNzg1N2VmMTY0NzUiLCJpYXQiOjE3MzAxMzQ4MTcsImV4cCI6MTczMDEzODQxN30.LrcaPZpbFIZCQhU3sEGE9YP8Y0qHfPmYeqdFMjN79Pg
 ###
-GET http://localhost:4500/api/v10/veterinarios/724e17fe-56e2-47a0-97e8-a28388d7ec42 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg4NzA2NzEsImV4cCI6MTcyODg3NDI3MX0.r-OVbOln_dKlplOEdYHpB7iCcK_bE6VBe9aH78BUSF0
+GET http://localhost:4500/api/v10/veterinarios/78130de9-b0d5-4865-bd50-07857ef16475 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ODEzMGRlOS1iMGQ1LTQ4NjUtYmQ1MC0wNzg1N2VmMTY0NzUiLCJpYXQiOjE3MzAxNDc5NzEsImV4cCI6MTczMDE1MTU3MX0.4RocqZqCvUqDbX3k4nAdzMCJn2GL48RNBFsl6wOzSP8
 
 ###
 

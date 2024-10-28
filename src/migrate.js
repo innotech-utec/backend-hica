@@ -12,15 +12,15 @@ import { Tratamiento } from "./Animales/Models/Tratamiento.js";
 
 //Generar BD
 
-await User.sync({ force: false });
-await Veterinario.sync({ force: false });
-await Animal.sync({ force: false });
-await Responsable.sync({ force: false });  
-await ExamenObjetivo.sync({ force: false }); 
-await FichaClinica.sync({ force: false }); 
-await HistoriaClinica.sync({ force: false }); 
-await RegistroParametros.sync({ force: false }); 
-await Tratamiento.sync({ force: false }); 
+await User.sync({ alter: true });
+await Veterinario.sync({ alter: true });
+await Animal.sync({ alter: true });
+await Responsable.sync({ alter: true });  
+await ExamenObjetivo.sync({ alter: true }); 
+await FichaClinica.sync({ alter: true }); 
+await HistoriaClinica.sync({ alter: true }); 
+await RegistroParametros.sync({ alter: true }); 
+await Tratamiento.sync({ alter: true }); 
 
 setupRelationships();
 

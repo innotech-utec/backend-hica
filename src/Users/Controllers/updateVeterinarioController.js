@@ -17,8 +17,8 @@ export const updateVeterinarioController = async (request, response) => {
     }
 
     // Extrae los campos del cuerpo de la petición
-    const { N_de_registro, Dependencia, Validado, deviceId } = request.body;
-    const Foto = request.file ? request.file.buffer : null; // Si se está enviando una nueva imagen
+    const { N_de_registro, Dependencia, Validado, deviceId, Foto } = request.body;
+    //const Foto = request.file ? request.file.buffer : null; // Si se está enviando una nueva imagen
 
     // Actualiza los campos
     veterinario.N_de_registro = N_de_registro || veterinario.N_de_registro;
@@ -27,7 +27,10 @@ export const updateVeterinarioController = async (request, response) => {
     veterinario.deviceId = deviceId || veterinario.deviceId;
 
     if (Foto) {
+      console.log("Llego una foto");
       veterinario.Foto = Foto;  // Guardar la foto en formato BLOB
+    }else{
+      console.log("no llego nada");
     }
 
     // Guarda los cambios
