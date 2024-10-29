@@ -29,6 +29,7 @@ import { indexFichaClinicaController } from './Animales/Controllers/indexFichaCl
 import { createExamenObjetivoController } from './Animales/Controllers/createExamenObjetivoController.js';
 import { indexExamenObjetivoController } from './Animales/Controllers/indexExamenObjetivoController.js';
 import { getExamenObjetivoByFichaController } from './Animales/Controllers/getExamenObjetivoByFichaController.js';
+
 import { createTratamientoController } from './Animales/Controllers/createTratamientoController.js';
 import { indexTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
 import { updateTratamientoController } from './Animales/Controllers/udpateTratamientoController.js';
@@ -82,7 +83,7 @@ router.patch('/animales/:animalId', token, updateAnimalController);
 
 // Rutas de fichas clínicas
 router.get('/fichasClinicas/animal/:animalId', token, indexFichaClinicaController);
-router.get('/fichasClinicas/abiertas/:animalId', token, indexFichaClinicaAbiertaController); // Ruta para obtener fichas clínicas abiertas
+router.get('/fichasClinicas/abiertas/:animalId', token, indexFichaClinicaAbiertaController); 
 router.get('/fichasClinicas/:id', token, getFichaClinicaByIdController);
 router.post('/fichasClinicas', token, createFichaClinicaController);
 router.patch('/fichasClinicas/:fichaClinicaId', token, updateFichaClinicaController);
@@ -93,6 +94,7 @@ router.get('/examenObjetivo/:animalId', token, indexExamenObjetivoController);
 router.post('/examenObjetivo', token, createExamenObjetivoController);
 router.get('/examenObjetivo/fichaClinica/:fichaClinicaId', token, getExamenObjetivoByFichaController);
 router.patch('/examenObjetivo/:id',token, updateExamenObjetivoController);
+
 
 // Rutas de tratamientos
 router.get('/tratamientos/:fichaClinicaId', token, indexTratamientoController);

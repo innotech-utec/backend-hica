@@ -3,13 +3,13 @@ import { FichaClinica } from '../Models/FichaClinica.js';
 import { Animal } from '../Models/Animal.js';
 
 export const getFichaClinicaByIdController = async (req, res) => {
-    const { id } = req.params; // Obtener el ID de la ficha clínica desde los parámetros
+    const { id } = req.params;
     try {
         const fichaClinica = await FichaClinica.findByPk(id, {
             include: [
                 {
                     model: Animal,
-                    as: 'animal', // Asegúrate de usar el alias correcto definido en tus relaciones
+                    as: 'animal', 
                 },
             ],
         });
