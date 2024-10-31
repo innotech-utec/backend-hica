@@ -15,12 +15,16 @@ import { Tratamiento } from "./Animales/Models/Tratamiento.js";
 await User.sync({ force: false });
 await Veterinario.sync({ force: false });
 await Animal.sync({ force: false });
-await Responsable.sync({ force: false });  
-await ExamenObjetivo.sync({ force: false }); 
-await FichaClinica.sync({ force: false }); 
-await HistoriaClinica.sync({ force: false }); 
+await Responsable.sync({ alter: true });  
+
+await FichaClinica.sync({ force: false });
+await ExamenObjetivo.sync({ force: false });
+
 await RegistroParametros.sync({ force: false }); 
 await Tratamiento.sync({ force: false }); 
+await HistoriaClinica.sync({ force: true }); 
+
+ 
 
 setupRelationships();
 

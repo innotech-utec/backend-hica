@@ -13,7 +13,7 @@ export default function setupRelationships() {
 
 
   //usuarui vet
-  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario' });
+  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario', onDelete: 'CASCADE'  });
   Veterinario.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
   // Relación entre Responsable y Animales (Responsable es propietario)
@@ -45,6 +45,7 @@ export default function setupRelationships() {
   Tratamiento.belongsTo(Veterinario, { foreignKey: 'veterinarioId', as: 'veterinario' });
 
   // Relación de Registro de Parámetros con Animal
-  Animal.hasMany(RegistroParametros, { foreignKey: 'animalId', as: 'registroParametros', onDelete: 'CASCADE' });
-  RegistroParametros.belongsTo(Animal, { foreignKey: 'animalId', as: 'animal' });
+  FichaClinica.hasMany(RegistroParametros, { foreignKey: 'fichaClinicaId', as: 'registroParametros', onDelete: 'CASCADE' });
+  RegistroParametros.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
+ 
 }

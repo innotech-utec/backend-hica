@@ -17,6 +17,7 @@ import { createResponsableController } from './Responsables/Controllers/createRe
 import { showResponsableController } from './Responsables/Controllers/showResponsableController.js';
 import { updateResponsableController } from './Responsables/Controllers/updateResponsableController.js';
 import { deleteResponsableController } from './Responsables/Controllers/deleteResponsableController.js';
+import { getDepartamentos } from './Responsables/Controllers/departamentoController.js';
 
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
@@ -29,6 +30,7 @@ import { indexFichaClinicaController } from './Animales/Controllers/indexFichaCl
 import { createExamenObjetivoController } from './Animales/Controllers/createExamenObjetivoController.js';
 import { indexExamenObjetivoController } from './Animales/Controllers/indexExamenObjetivoController.js';
 import { getExamenObjetivoByFichaController } from './Animales/Controllers/getExamenObjetivoByFichaController.js';
+
 import { createTratamientoController } from './Animales/Controllers/createTratamientoController.js';
 import { indexTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
 import { updateTratamientoController } from './Animales/Controllers/udpateTratamientoController.js';
@@ -36,6 +38,9 @@ import { updateTratamientoController } from './Animales/Controllers/udpateTratam
 
 import { createRegistroParametrosController } from './Animales/Controllers/createRegistroParametrosController.js';
 import { indexRegistroParametrosController } from './Animales/Controllers/indexRegistroParametrosController.js';
+import { getRegistroDeParametrosByFichaController } from './Animales/Controllers/getRegistroDeParametrosByFichaController.js';
+import { udpateParametroController } from './Animales/Controllers/udpateParametroController.js';
+
 import { getHistoriaClinicaController } from './Animales/Controllers/getHistoriaClinicaController.js';
 import { createHistoriaClinicaController } from './Animales/Controllers/createHistoriaClinicaController.js';
 import { showAnimalController } from './Animales/Controllers/showAnimalController.js';
@@ -51,6 +56,9 @@ import { updateVeterinarioController } from './Users/Controllers/updateVeterinar
 import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
 import { updateExamenObjetivoController } from './Animales/Controllers/udpateExamenObjetivoController.js';
 
+
+
+
 const router = express.Router();
 
 // Rutas de autenticación
@@ -59,7 +67,7 @@ router.get('/token/verify', verifyTokenController);
 
 // Rutas de usuarios
 router.get('/usuarios', token, indexUserController);
-router.post('/usuarios', createUserController);  // Ruta de creación de usuario (sin middleware para registro)
+router.post('/usuarios', createUserController);  
 router.delete('/usuarios/:id', token, deleteController);
 router.get('/usuarios/:id', token, showController);
 router.patch('/usuarios/:id', token, updateController);
@@ -69,7 +77,8 @@ router.get('/responsables', token, indexResponsableController);
 router.post('/responsables', token, createResponsableController); 
 router.get('/responsables/:id', token, showResponsableController);
 router.patch('/responsables/:id', token, updateResponsableController);
-router.delete('/responsables/:id', token, deleteResponsableController)
+router.delete('/responsables/:id', token, deleteResponsableController);
+router.get('/departamentos', getDepartamentos);
 
 // Rutas de animales
 router.get('/animales', token, indexAnimalController); 
@@ -79,7 +88,7 @@ router.patch('/animales/:animalId', token, updateAnimalController);
 
 // Rutas de fichas clínicas
 router.get('/fichasClinicas/animal/:animalId', token, indexFichaClinicaController);
-router.get('/fichasClinicas/abiertas/:animalId', token, indexFichaClinicaAbiertaController); // Ruta para obtener fichas clínicas abiertas
+router.get('/fichasClinicas/abiertas/:animalId', token, indexFichaClinicaAbiertaController); 
 router.get('/fichasClinicas/:id', token, getFichaClinicaByIdController);
 router.post('/fichasClinicas', token, createFichaClinicaController);
 router.patch('/fichasClinicas/:fichaClinicaId', token, updateFichaClinicaController);
@@ -91,6 +100,7 @@ router.post('/examenObjetivo', token, createExamenObjetivoController);
 router.get('/examenObjetivo/fichaClinica/:fichaClinicaId', token, getExamenObjetivoByFichaController);
 router.patch('/examenObjetivo/:id',token, updateExamenObjetivoController);
 
+
 // Rutas de tratamientos
 router.get('/tratamientos/:fichaClinicaId', token, indexTratamientoController);
 router.get('/tratamientos/veterinario/:veterinarioId', token, getTratamientosVeterinarioController);
@@ -101,6 +111,8 @@ router.patch('/tratamientos/:id',token, updateTratamientoController);
 // Rutas de registros de parámetros
 router.get('/registroParametros/:animalId', token, indexRegistroParametrosController);
 router.post('/registroParametros', token, createRegistroParametrosController);
+router.get('/registroParametros/fichaClinica/:fichaClinicaId', token, getRegistroDeParametrosByFichaController);
+router.patch('/registroParametros/:id',token, udpateParametroController);
 
 // Ruta de historia clínica completa
 router.get('/historiaClinica/:animalId', token, getHistoriaClinicaController);
@@ -114,5 +126,4 @@ router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
 
 
-// Exportar el router
 export { router };

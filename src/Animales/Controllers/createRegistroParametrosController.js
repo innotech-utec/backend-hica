@@ -1,17 +1,17 @@
 import { RegistroParametros } from '../Models/RegistroParametros.js';
-import { Animal } from '../Models/Animal.js';
+import { FichaClinica } from '../Models/FichaClinica.js';
 
 export const createRegistroParametrosController = async (req, res) => {
   try {
-    const { fecha, hora, FC, FR, temperatura, mucosas, TllC, pliegueCutaneo, observaciones, animalId } = req.body;
+    const { fecha, hora, FC, FR, temperatura, mucosas, TllC, pliegueCutaneo, observaciones, fichaClinicaId } = req.body;
 
-    if (!animalId) {
+    if (!fichaClinicaId) {
       return res.status(400).json({ message: 'El ID del animal es requerido.' });
     }
 
-    const animal = await Animal.findByPk(animalId);
-    if (!animal) {
-      return res.status(404).json({ message: 'El animal proporcionado no existe.' });
+    const fichaClinica = await FichaClinica.findByPk(fichaClinicaId);
+    if (!fichaClinica) {
+      return res.status(404).json({ message: 'La ficha clínica proporcionada no existe.' });
     }
 
     const nuevoRegistro = await RegistroParametros.create({
@@ -24,7 +24,7 @@ export const createRegistroParametrosController = async (req, res) => {
       TllC,
       pliegueCutaneo,
       observaciones,
-      animalId,
+      fichaClinicaId,
     });
 
     res.status(201).json(nuevoRegistro);
