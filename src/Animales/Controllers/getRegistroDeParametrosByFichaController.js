@@ -1,4 +1,4 @@
-// getRegistroDeParametrosByFichaController.js
+
 import { RegistroParametros } from '../Models/RegistroParametros.js';
 import { FichaClinica } from '../Models/FichaClinica.js';
 

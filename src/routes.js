@@ -17,6 +17,7 @@ import { createResponsableController } from './Responsables/Controllers/createRe
 import { showResponsableController } from './Responsables/Controllers/showResponsableController.js';
 import { updateResponsableController } from './Responsables/Controllers/updateResponsableController.js';
 import { deleteResponsableController } from './Responsables/Controllers/deleteResponsableController.js';
+import { getDepartamentos } from './Responsables/Controllers/departamentoController.js';
 
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
@@ -55,6 +56,9 @@ import { updateVeterinarioController } from './Users/Controllers/updateVeterinar
 import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
 import { updateExamenObjetivoController } from './Animales/Controllers/udpateExamenObjetivoController.js';
 
+
+
+
 const router = express.Router();
 
 // Rutas de autenticación
@@ -63,7 +67,7 @@ router.get('/token/verify', verifyTokenController);
 
 // Rutas de usuarios
 router.get('/usuarios', token, indexUserController);
-router.post('/usuarios', createUserController);  // Ruta de creación de usuario (sin middleware para registro)
+router.post('/usuarios', createUserController);  
 router.delete('/usuarios/:id', token, deleteController);
 router.get('/usuarios/:id', token, showController);
 router.patch('/usuarios/:id', token, updateController);
@@ -73,7 +77,8 @@ router.get('/responsables', token, indexResponsableController);
 router.post('/responsables', token, createResponsableController); 
 router.get('/responsables/:id', token, showResponsableController);
 router.patch('/responsables/:id', token, updateResponsableController);
-router.delete('/responsables/:id', token, deleteResponsableController)
+router.delete('/responsables/:id', token, deleteResponsableController);
+router.get('/departamentos', getDepartamentos);
 
 // Rutas de animales
 router.get('/animales', token, indexAnimalController); 
@@ -121,5 +126,4 @@ router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
 
 
-// Exportar el router
 export { router };

@@ -4,10 +4,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js",
+    "dev": "node src/seeders/runSeeders.js && nodemon src/index.js",
     "bd": "nodemon src/migrate.js",
     "test": "nodemon test/insertUser.js",
     "start": "node src/index.js"
+  
+ 
+       
+    
   },
   "keywords": [],
   "author": "",

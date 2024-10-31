@@ -1,6 +1,5 @@
-// ./Responsables/Models/Responsable.js
 import { Sequelize, DataTypes } from "sequelize";
-import { sequelize } from "../../database.js"; // Asegúrate de que esta ruta sea correcta
+import { sequelize } from "../../database.js";
 
 const Responsable = sequelize.define('responsables', {
   id: {
@@ -20,9 +19,20 @@ const Responsable = sequelize.define('responsables', {
     type: DataTypes.STRING(50),
     allowNull: false,
   },
-  
   domicilio: {
     type: DataTypes.STRING(50),
+    allowNull: false,
+  },
+  telefono: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  departamentoId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  localidadId: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 }, {
