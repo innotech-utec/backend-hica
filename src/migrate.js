@@ -9,6 +9,8 @@ import { FichaClinica } from "./Animales/Models/FichaClinica.js";
 import { HistoriaClinica } from "./Animales/Models/HistoriaClinica.js";
 import { RegistroParametros } from "./Animales/Models/RegistroParametros.js";
 import { Tratamiento } from "./Animales/Models/Tratamiento.js";
+import { Articulo } from "./Facturas/Models/Articulo.js";
+import { Factura } from "./Facturas/Models/Factura.js";
 
 //Generar BD
 
@@ -23,6 +25,9 @@ await ExamenObjetivo.sync({ force: false });
 await RegistroParametros.sync({ force: false }); 
 await Tratamiento.sync({ force: false }); 
 await HistoriaClinica.sync({ force: true }); 
+
+await Articulo.sync({ alter: true }); 
+await Factura.sync({ alter: true }); 
 
  
 

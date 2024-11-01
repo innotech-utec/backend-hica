@@ -7,6 +7,10 @@ import { Responsable } from './Responsables/Models/Responsable.js';
 import { HistoriaClinica } from './Animales/Models/HistoriaClinica.js';
 import { User } from './Users/Models/User.js';
 import { Veterinario } from './Users/Models/Veterinarios.js';
+import { Departamento } from './Responsables/Models/Departamento.js';
+
+import { Articulo } from './Facturas/Models/Articulo.js';
+import { Factura } from './Facturas/Models/Factura.js';
 
 
 export default function setupRelationships() {
@@ -48,4 +52,13 @@ export default function setupRelationships() {
   FichaClinica.hasMany(RegistroParametros, { foreignKey: 'fichaClinicaId', as: 'registroParametros', onDelete: 'CASCADE' });
   RegistroParametros.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
  
+  Departamento.hasMany(Responsable, {foreignKey: 'departamentoId', as: 'responsables'  }); 
+  Responsable.belongsTo(Departamento, {foreignKey: 'departamentoId', as: 'departamento' });
+
+  // Asociación uno a muchos entre Factura y Artículos
+Factura.hasMany(Articulo, { foreignKey: "facturaId", as: "articulos" });
+Articulo.belongsTo(Factura, { foreignKey: "facturaId", as: "factura" });
+
+FichaClinica.hasOne(Factura, { foreignKey: "fichaClinicaId", as: "factura", onDelete: "CASCADE" });
+Factura.belongsTo(FichaClinica, { foreignKey: "fichaClinicaId", as: "fichaClinica" });
 }

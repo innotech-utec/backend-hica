@@ -18,6 +18,7 @@ import { showResponsableController } from './Responsables/Controllers/showRespon
 import { updateResponsableController } from './Responsables/Controllers/updateResponsableController.js';
 import { deleteResponsableController } from './Responsables/Controllers/deleteResponsableController.js';
 import { getDepartamentos } from './Responsables/Controllers/departamentoController.js';
+import { getAnimalesByResponsableController } from './Responsables/Controllers/getAnimalesByResponsableController.js';
 
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
@@ -56,6 +57,13 @@ import { updateVeterinarioController } from './Users/Controllers/updateVeterinar
 import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
 import { updateExamenObjetivoController } from './Animales/Controllers/udpateExamenObjetivoController.js';
 
+import { createArticuloController } from './Facturas/Controllers/articuloController.js';
+import { updateArticuloController } from './Facturas/Controllers/articuloController.js';
+import { indexArticuloController } from './Facturas/Controllers/articuloController.js';
+import { createFacturaController } from './Facturas/Controllers/facturaController.js';
+import { updateFacturaController } from './Facturas/Controllers/facturaController.js';
+import { indexFacturaController } from './Facturas/Controllers/facturaController.js';
+
 
 
 
@@ -79,6 +87,8 @@ router.get('/responsables/:id', token, showResponsableController);
 router.patch('/responsables/:id', token, updateResponsableController);
 router.delete('/responsables/:id', token, deleteResponsableController);
 router.get('/departamentos', getDepartamentos);
+router.get('/responsables/:id/animales', token, getAnimalesByResponsableController);
+
 
 // Rutas de animales
 router.get('/animales', token, indexAnimalController); 
@@ -124,6 +134,15 @@ router.get('/veterinarios/:userId', token, showVeterinarioController);
 router.post('/veterinarios', token, createVeterinarioController);  
 router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
+
+router.post('/articulos', token, createArticuloController); // Crear artículo
+router.get('/articulos', token, indexArticuloController); // Listar artículos
+router.patch('/articulos/:id', token, updateArticuloController); // Editar artículo
+
+
+router.post('/facturas', token, createFacturaController); // Crear factura
+router.get('/facturas', token, indexFacturaController); // Listar facturas
+router.patch('/facturas/:id', token, updateFacturaController); // Editar factura
 
 
 export { router };
