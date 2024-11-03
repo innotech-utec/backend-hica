@@ -3,12 +3,42 @@ import { FichaClinica } from '../Models/FichaClinica.js';
 
 export const createExamenObjetivoController = async (req, res) => {
   try {
-    const { FC, Resp, temperatura, condicionCorporal, sensorio, fascies, gangliosLinfaticos, pielSubcutaneo, mucosasAparentes, grandesFuncionales, actitudesAnomalas, EOP, paraclinicos, diagnostico, observaciones, fichaClinicaId } = req.body;
+    const {
+      FC,
+      Resp,
+      temperatura,
+      condicionCorporal,
+      sensorio,
+      fascies,
+      gangliosLinfaticos,
+      pielSubcutaneo,
+      mucosasAparentes,
+      grandesFuncionales,
+      actitudesAnomalas,
+      EOP,
+      paraclinicos,
+      diagnostico,
+      observaciones,
+      fichaClinicaId
+    } = req.body;
 
+    // Validación del ID de la ficha clínica
     if (!fichaClinicaId) {
       return res.status(400).json({ message: 'El ID de la ficha clínica es requerido.' });
     }
 
+    // Validar campos numéricos
+    if (isNaN(FC)) {
+      return res.status(400).json({ message: 'El campo "FC" debe ser un número.' });
+    }
+    if (isNaN(Resp)) {
+      return res.status(400).json({ message: 'El campo "Resp" debe ser un número.' });
+    }
+    if (temperatura !== undefined && isNaN(temperatura)) {
+      return res.status(400).json({ message: 'El campo "temperatura" debe ser un número.' });
+    }
+
+    // Verificar existencia de la ficha clínica
     const fichaClinica = await FichaClinica.findByPk(fichaClinicaId);
     if (!fichaClinica) {
       return res.status(404).json({ message: 'La ficha clínica proporcionada no existe.' });

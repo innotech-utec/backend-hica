@@ -14,12 +14,14 @@ const Veterinario = sequelize.define('veterinarios', {
     },
     deviceId: {
         type: DataTypes.STRING,
-        allowNull: true,  // Permitir que inicialmente sea null si no ha autorizado ningún dispositivo
-        unique: true      // Aseguramos que no se repita en otro veterinario
+        allowNull: true,  
+        unique: true      
     },
+  
     Dependencia: {
-        type: DataTypes.STRING(50),
-        allowNull: false
+      type: DataTypes.ENUM('Clinica Pequeños Animales', 'Equinos','Endocrinologia y Metabolismo Animal', 'Gestión Hospitalaria', 'Semiología'),
+      defaultValue: 'Equinos', 
+      allowNull: false,
     },
     Foto: {
       type: DataTypes.BLOB('long'),
@@ -34,8 +36,8 @@ const Veterinario = sequelize.define('veterinarios', {
         }
     }
 }, {
-    timestamps: true,  // Asegura que createdAt y updatedAt existan
-    paranoid: true    // Habilita soft delete
+    timestamps: true,  
+    paranoid: true  
 });
 
 

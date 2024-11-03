@@ -1,15 +1,15 @@
 import { RegistroParametros } from '../Models/RegistroParametros.js';
-import { Animal } from '../Models/Animal.js';
+import { FichaClinica } from '../Models/FichaClinica.js';
 
 export const indexRegistroParametrosController = async (req, res) => {
   try {
-    const { animalId } = req.params;
+    const { fichaClinicaId } = req.params;
 
-    if (!animalId) {
-      return res.status(400).json({ message: 'El ID del animal es requerido.' });
+    if (!fichaClinicaId) {
+      return res.status(400).json({ message: 'El ID de la ficha clinica es requerida.' });
     }
 
-    const parametros = await RegistroParametros.findAll({ where: { animalId }, include: { model: Animal, as: 'animal' } });
+    const parametros = await RegistroParametros.findAll({ where: { fichaClinicaId }, include: { model: FichaClinica, as: 'fichaClinica' } });
     res.status(200).json(parametros);
   } catch (error) {
     console.error('Error al obtener los registros de parámetros:', error);

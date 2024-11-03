@@ -10,6 +10,7 @@ import cors from 'cors';
 import { router } from './routes.js';
 import { sequelize } from './database.js';
 import setupRelationships from './relationships.js';
+import { seedDepartamentos } from './Responsables/Models/DepartamentoSeeders.js';
 
 dotenv.config();
 
@@ -57,10 +58,11 @@ async function startServer() {
     await sequelize.sync();
     console.log('Base de datos sincronizada y relaciones configuradas');
 
+    await seedDepartamentos();
     app.use(cors(config.corsOptions));
     app.use(express.json());
     app.use('/api/v10', router);
- 
+    
 
     let server;
     if (config.protocol === 'https') {
