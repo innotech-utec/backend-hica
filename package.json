@@ -8,10 +8,6 @@
     "bd": "nodemon src/migrate.js",
     "test": "nodemon test/insertUser.js",
     "start": "node src/index.js"
-  
- 
-       
-    
   },
   "keywords": [],
   "author": "",
@@ -26,8 +22,10 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.11.2",
     "path": "^0.12.7",
+    "pdfkit": "^0.15.1",
     "sequelize": "^6.37.3",
     "url": "^0.11.3",
+    "uuid": "^11.0.2",
     "ws": "^8.18.0"
   },
   "devDependencies": {

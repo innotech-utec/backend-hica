@@ -2,7 +2,6 @@ import { User } from '../Models/User.js';
 import { PasswordService } from '../../Auth/Services/PasswordService.js';
 
 export const createUserController = async (request, response) => {
-
     const { nombre, password, email, documento, apellido, estado, isAdmin } = request.body;
 
     if (!email) {
@@ -10,7 +9,6 @@ export const createUserController = async (request, response) => {
     }
 
     const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
     if (!emailRegex.test(email)) {
         return response.status(401).json({ message: 'El correo electrónico ingresado es inválido.' });
     }
@@ -24,23 +22,34 @@ export const createUserController = async (request, response) => {
     }
 
     const strongPasswordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/;
-
     if (!strongPasswordRegex.test(password)) {
         return response.status(401).json({ message: 'Por favor, ingrese una contraseña más segura' });
     }
 
-    const user = await User.create({
-        documento,
-        nombre,
-        apellido,
-        estado,
-        email,
-        password: await PasswordService.encrypt(password),
-        isAdmin
-    });
+    try {
+        // Verificar si el correo ya está registrado
+        const existingUser = await User.findOne({ where: { email } });
+        if (existingUser) {
+            return response.status(409).json({ message: 'El correo electrónico ya está registrado.' });
+        }
 
-    // pasar la ID en la respuesta
-    return response.status(201).json({
-        id: user.id
-    });
-}
+        // Crear el usuario si el correo no está duplicado
+        const user = await User.create({
+            documento,
+            nombre,
+            apellido,
+            estado,
+            email,
+            password: await PasswordService.encrypt(password),
+            isAdmin
+        });
+
+        // Pasar la ID en la respuesta
+        return response.status(201).json({
+            id: user.id
+        });
+    } catch (error) {
+        console.error('Error al crear el usuario:', error);
+        return response.status(500).json({ message: 'Error al crear el usuario' });
+    }
+};

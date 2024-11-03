@@ -1,27 +1,20 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../../database.js";
-import { Articulo } from "./Articulo.js";
+import Articulo from "./Articulo.js";
 
-const Factura = sequelize.define("factura", {
+export const Factura = sequelize.define('factura', {
   id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true,
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
   },
   fichaClinicaId: {
     type: DataTypes.UUID,
-    allowNull: false,
+    allowNull: false
   },
   total: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-    defaultValue: 0,
+    type: DataTypes.DECIMAL(10, 2),
+    defaultValue: 0
   },
-}, {
-  timestamps: true,
-  paranoid: true,
+ 
 });
-
-
-
-export { Factura };

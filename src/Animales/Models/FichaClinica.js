@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 import { sequelize } from "../../database.js";
+import { HistoriaClinica } from './HistoriaClinica.js';
 
 const FichaClinica = sequelize.define('fichasClinicas', {
   id: {
