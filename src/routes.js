@@ -56,7 +56,8 @@ import { updateVeterinarioController } from './Users/Controllers/updateVeterinar
 import { getTratamientosVeterinarioController } from './Animales/Controllers/getTratamientosVeterinarioController.js';
 import { updateExamenObjetivoController } from './Animales/Controllers/udpateExamenObjetivoController.js';
 
-
+//Reseña
+import {uploadResenaController} from "../config/cloudinary.js"
 
 
 const router = express.Router();
@@ -124,6 +125,9 @@ router.get('/veterinarios/:userId', token, showVeterinarioController);
 router.post('/veterinarios', token, createVeterinarioController);  
 router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
+
+//Cargar resena
+router.post('/upload', uploadResenaController);
 
 
 export { router };

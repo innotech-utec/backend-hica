@@ -4,8 +4,8 @@ POST http://localhost:4500/api/v10/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "email": "eli@hica.com",
-    "password": "Hica@1607"
+    "email": "bruno@hica.com",
+    "password": "Hica.2024"
 }
 ###
 
@@ -20,8 +20,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlM
 GET http://localhost:4500/api/v10/veterinarios HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ODEzMGRlOS1iMGQ1LTQ4NjUtYmQ1MC0wNzg1N2VmMTY0NzUiLCJpYXQiOjE3MzAxMzQ4MTcsImV4cCI6MTczMDEzODQxN30.LrcaPZpbFIZCQhU3sEGE9YP8Y0qHfPmYeqdFMjN79Pg
 ###
-GET http://localhost:4500/api/v10/veterinarios/78130de9-b0d5-4865-bd50-07857ef16475 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3ODEzMGRlOS1iMGQ1LTQ4NjUtYmQ1MC0wNzg1N2VmMTY0NzUiLCJpYXQiOjE3MzAxNDc5NzEsImV4cCI6MTczMDE1MTU3MX0.4RocqZqCvUqDbX3k4nAdzMCJn2GL48RNBFsl6wOzSP8
+GET http://localhost:4500/api/v10/veterinarios/cb508030-551c-414b-b724-56be9b209cff HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzA3NDE1NzUsImV4cCI6MTczMDc0NTE3NX0.ExFLCl_LFpdciQ79tlSNn98EcBNfFU3oqlWzBxqsWC0
 
 ###
 
@@ -44,3 +44,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlM
 ###
 PUT http://localhost:4500/api/v10/tratamientos/ba1a3a91-9957-41cf-b063-2bc2747eab9a/APROBADO HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI3MjRlMTdmZS01NmUyLTQ3YTAtOTdlOC1hMjgzODhkN2VjNDIiLCJpYXQiOjE3Mjg5MTgwODksImV4cCI6MTcyODkyMTY4OX0.LBYATjhCGYy41KMdb3lrNPcbMM_RaQjsYjkiognqCRE
+
+###
+GET http://localhost:4500/api/v10//tratamientos/veterinario/4 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzA3NTMxMDksImV4cCI6MTczMDc1NjcwOX0.vWTsOoFmqh6CK5otgJG2I0rS_a0_R11oLatXbHfhVJ0
+
+###

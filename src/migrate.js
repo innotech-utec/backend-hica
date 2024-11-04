@@ -9,23 +9,28 @@ import { FichaClinica } from "./Animales/Models/FichaClinica.js";
 import { HistoriaClinica } from "./Animales/Models/HistoriaClinica.js";
 import { RegistroParametros } from "./Animales/Models/RegistroParametros.js";
 import { Tratamiento } from "./Animales/Models/Tratamiento.js";
+import { Departamento } from './Responsables/Models/Departamento.js';
+import { seedDepartamentos } from './Responsables/Models/DepartamentoSeeders.js';
+
 
 //Generar BD
 
-await User.sync({ force: false });
-await Veterinario.sync({ force: false });
-await Animal.sync({ force: false });
+await User.sync({ alter: true });
+await Veterinario.sync({ alter: true });
+await Animal.sync({ alter: true });
 await Responsable.sync({ alter: true });  
 
-await FichaClinica.sync({ force: false });
-await ExamenObjetivo.sync({ force: false });
+await FichaClinica.sync({ alter: true });
+await ExamenObjetivo.sync({ alter: true });
 
-await RegistroParametros.sync({ force: false }); 
-await Tratamiento.sync({ force: false }); 
+await RegistroParametros.sync({ alter: true }); 
+await Tratamiento.sync({ alter: true }); 
 await HistoriaClinica.sync({ force: true }); 
 
- 
+await Departamento.sync({ alter: true });
+
 
 setupRelationships();
+await seedDepartamentos();
 
 console.log("bd actualizada");
