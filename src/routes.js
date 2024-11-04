@@ -1,11 +1,10 @@
-// routes.js (archivo donde defines tus rutas)
+
 
 import express from 'express';
 import { loginController } from './Auth/Controllers/loginController.js';
 import { verifyTokenController } from './Auth/Controllers/verifyTokenController.js';
 import { token } from './Auth/Middlewares/token.js';
 
-// Importación de los controladores
 import { indexUserController } from './Users/Controllers/indexUserController.js';
 import { createUserController } from './Users/Controllers/createUserController.js';
 import { deleteController } from './Users/Controllers/deleteController.js';
@@ -18,6 +17,7 @@ import { showResponsableController } from './Responsables/Controllers/showRespon
 import { updateResponsableController } from './Responsables/Controllers/updateResponsableController.js';
 import { deleteResponsableController } from './Responsables/Controllers/deleteResponsableController.js';
 import { getDepartamentos } from './Responsables/Controllers/departamentoController.js';
+import { getAnimalesByResponsableController } from './Responsables/Controllers/getAnimalesByResponsableController.js';
 
 import { createAnimalController } from './Animales/Controllers/createAnimalController.js';
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
@@ -58,6 +58,16 @@ import { updateExamenObjetivoController } from './Animales/Controllers/udpateExa
 
 //Reseña
 import {uploadResenaController} from "../config/cloudinary.js"
+import { createArticuloController } from './Facturas/Controllers/articuloController.js';
+import { updateArticuloController } from './Facturas/Controllers/articuloController.js';
+import { indexArticuloController } from './Facturas/Controllers/articuloController.js';
+
+import { cerrarFacturaController } from './Facturas/Controllers/cerrarFacturaController.js';
+
+import { addOrUpdateFacturaArticuloController } from './Facturas/Controllers/facturaArticuloController.js';
+import { getArticulosFacturaController } from './Facturas/Controllers/facturaArticuloController.js';
+import { createOrGetFacturaController } from './Facturas/Controllers/facturaController.js';
+import { adjustStock} from './Facturas/Controllers/articuloController.js';
 
 
 const router = express.Router();
@@ -80,6 +90,8 @@ router.get('/responsables/:id', token, showResponsableController);
 router.patch('/responsables/:id', token, updateResponsableController);
 router.delete('/responsables/:id', token, deleteResponsableController);
 router.get('/departamentos', getDepartamentos);
+router.get('/responsables/:id/animales', token, getAnimalesByResponsableController);
+
 
 // Rutas de animales
 router.get('/animales', token, indexAnimalController); 
@@ -125,6 +137,18 @@ router.get('/veterinarios/:userId', token, showVeterinarioController);
 router.post('/veterinarios', token, createVeterinarioController);  
 router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
+
+router.post('/articulos', token, createArticuloController); 
+router.get('/articulos', token, indexArticuloController); 
+router.patch('/articulos/:id', token, updateArticuloController); 
+router.post('/articulos/:articuloId/ajustar-stock', adjustStock);
+
+
+router.post('/facturas/:facturaId/cerrar', cerrarFacturaController);
+router.post('/facturas/createOrGet', createOrGetFacturaController);
+router.post('/facturas/:facturaId/articulos/:articuloId', addOrUpdateFacturaArticuloController);
+router.get('/facturas/:facturaId/articulos', getArticulosFacturaController);
+
 
 //Cargar resena
 router.post('/upload', uploadResenaController);

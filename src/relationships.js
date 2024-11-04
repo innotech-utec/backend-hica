@@ -7,45 +7,46 @@ import { Responsable } from './Responsables/Models/Responsable.js';
 import { HistoriaClinica } from './Animales/Models/HistoriaClinica.js';
 import { User } from './Users/Models/User.js';
 import { Veterinario } from './Users/Models/Veterinarios.js';
-
+import { Departamento } from './Responsables/Models/Departamento.js';
+import Articulo from './Facturas/Models/Articulo.js';
+import { Factura } from './Facturas/Models/Factura.js';
+import { FacturaArticulos } from './Facturas/Models/FacturaArticulo.js';
 
 export default function setupRelationships() {
-
-
-  //usuarui vet
-  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario', onDelete: 'CASCADE'  });
+  User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario', onDelete: 'CASCADE' });
   Veterinario.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-  // Relación entre Responsable y Animales (Responsable es propietario)
   Responsable.hasMany(Animal, { foreignKey: 'responsableId', as: 'animales', onDelete: 'CASCADE' });
   Animal.belongsTo(Responsable, { foreignKey: 'responsableId', as: 'responsable' });
 
-  // Relación uno a uno entre Animal y Historia Clínica
   Animal.hasOne(HistoriaClinica, { foreignKey: 'animalId', as: 'historiaClinica', onDelete: 'CASCADE' });
   HistoriaClinica.belongsTo(Animal, { foreignKey: 'animalId', as: 'animal' });
 
-  // Relaciones entre Historia Clínica y sus fichas clínicas
   HistoriaClinica.hasMany(FichaClinica, { foreignKey: 'historiaClinicaId', as: 'fichasClinicas', onDelete: 'CASCADE' });
   FichaClinica.belongsTo(HistoriaClinica, { foreignKey: 'historiaClinicaId', as: 'historiaClinica' });
 
-  // Relación directa entre Animal y Ficha Clínica
   Animal.hasMany(FichaClinica, { foreignKey: 'animalId', as: 'fichasClinicasDirectas', onDelete: 'CASCADE' });
   FichaClinica.belongsTo(Animal, { foreignKey: 'animalId', as: 'animal' });
 
-  // Relaciones entre Ficha Clínica y Examen Objetivo
   FichaClinica.hasOne(ExamenObjetivo, { foreignKey: 'fichaClinicaId', as: 'examenObjetivo', onDelete: 'CASCADE' });
   ExamenObjetivo.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
 
-  // Relaciones entre Ficha Clínica y Tratamientos
   FichaClinica.hasMany(Tratamiento, { foreignKey: 'fichaClinicaId', as: 'tratamientos', onDelete: 'CASCADE' });
   Tratamiento.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
 
-  // Relación entre Tratamiento y Veterinario
   Veterinario.hasMany(Tratamiento, { foreignKey: 'veterinarioId', as: 'tratamientos', onDelete: 'CASCADE' });
   Tratamiento.belongsTo(Veterinario, { foreignKey: 'veterinarioId', as: 'veterinario' });
 
-  // Relación de Registro de Parámetros con Animal
   FichaClinica.hasMany(RegistroParametros, { foreignKey: 'fichaClinicaId', as: 'registroParametros', onDelete: 'CASCADE' });
   RegistroParametros.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
- 
+
+  Departamento.hasMany(Responsable, { foreignKey: 'departamentoId', as: 'responsables' });
+  Responsable.belongsTo(Departamento, { foreignKey: 'departamentoId', as: 'departamento' });
+
+  FichaClinica.hasOne(Factura, { foreignKey: "fichaClinicaId", as: "factura", onDelete: "CASCADE" });
+  Factura.belongsTo(FichaClinica, { foreignKey: "fichaClinicaId", as: "fichaClinica" });
+
+  Factura.belongsToMany(Articulo, { through: FacturaArticulos,foreignKey: 'facturaId' });
+  
+  Articulo.belongsToMany(Factura, { through: FacturaArticulos, foreignKey: 'articuloId' });
 }

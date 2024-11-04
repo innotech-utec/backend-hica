@@ -11,29 +11,41 @@ export const createFichaClinicaController = async (req, res) => {
     remotaPatologica,
     proximaFisiologica,
     proximaPatologica,
-    estadoFichaClinica, // Nuevo campo
+    estadoFichaClinica,
   } = req.body;
 
-  // Verificar si ya existe una ficha clínica abierta
-  const fichaAbierta = await FichaClinica.findOne({
-    where: { animalId, estadoFichaClinica: 'Ingresado' },
-  });
-
-  if (fichaAbierta) {
-    return res.status(400).json({ message: "Ya existe una ficha clínica abierta para este animal." });
-  }
-
-  // Verificar si hay una historia clínica asociada
-  const historiaClinica = await HistoriaClinica.findOne({
-    where: { animalId },
-  });
-
-  if (!historiaClinica) {
-    return res.status(404).json({ message: "No se encontró una historia clínica asociada a este animal." });
-  }
-
   try {
-    // Crear la ficha clínica
+    // Verificar si ya existe una ficha clínica abierta
+    const fichaAbierta = await FichaClinica.findOne({
+      where: { animalId, estadoFichaClinica: 'Ingresado' },
+    });
+
+    if (fichaAbierta) {
+      return res.status(400).json({ message: "Ya existe una ficha clínica abierta para este animal." });
+    }
+
+    // Verificar si hay una historia clínica asociada
+    let historiaClinica = await HistoriaClinica.findOne({ where: { animalId } });
+
+    if (!historiaClinica) {
+      // Si no existe historia clínica, crea una nueva
+      historiaClinica = await HistoriaClinica.create({ animalId });
+    } else {
+      // Verificar el estado de todas las fichas clínicas de la historia clínica
+      const fichasPrevias = await FichaClinica.findAll({
+        where: { historiaClinicaId: historiaClinica.id },
+      });
+
+      const tieneFichasActivas = fichasPrevias.some(ficha =>
+        ['Ingresado'].includes(ficha.estadoFichaClinica)
+      );
+
+      if (tieneFichasActivas) {
+        return res.status(400).json({ message: "Solo se puede crear una nueva ficha clínica si todas las anteriores están en estado Alta, Fallecimiento o Eutanasia." });
+      }
+    }
+
+    // Crear la nueva ficha clínica
     const fichaClinica = await FichaClinica.create({
       motivoConsulta,
       sanitaria,
@@ -42,7 +54,7 @@ export const createFichaClinicaController = async (req, res) => {
       remotaPatologica,
       proximaFisiologica,
       proximaPatologica,
-      estadoFichaClinica, // Almacenar el estado
+      estadoFichaClinica,
       animalId,
       historiaClinicaId: historiaClinica.id,
     });

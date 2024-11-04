@@ -12,6 +12,9 @@ import { Tratamiento } from "./Animales/Models/Tratamiento.js";
 import { Departamento } from './Responsables/Models/Departamento.js';
 import { seedDepartamentos } from './Responsables/Models/DepartamentoSeeders.js';
 
+import Articulo from "./Facturas/Models/Articulo.js";
+import { Factura } from "./Facturas/Models/Factura.js";
+import { FacturaArticulos } from "./Facturas/Models/FacturaArticulo.js";
 
 //Generar BD
 
@@ -26,6 +29,11 @@ await ExamenObjetivo.sync({ alter: true });
 await RegistroParametros.sync({ alter: true }); 
 await Tratamiento.sync({ alter: true }); 
 await HistoriaClinica.sync({ force: true }); 
+
+await Articulo.sync({ alter: true }); 
+await Factura.sync({ alter: true }); 
+await FacturaArticulos.sync({ alter: true }); 
+
 
 await Departamento.sync({ alter: true });
 
