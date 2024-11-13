@@ -31,8 +31,8 @@ export const loginController = async (request, response) => {
         // Genera el token JWT
         const token = jwt.sign(
             { userId: user.id },
-            env('JWT_SECRET_KEY'),  // Asegúrate de que la clave JWT está bien configurada
-            { expiresIn: '1h' }
+            env('JWT_SECRET_KEY'),
+            // { expiresIn: '1h' }
         );
 
         // Construye la respuesta
@@ -43,7 +43,6 @@ export const loginController = async (request, response) => {
                 user: {
                     id: user.id,
                     email: user.email,
-                    // Agrega cualquier otro campo del usuario que necesites en la respuesta, pero evita incluir la contraseña
                 }
             }
         };
