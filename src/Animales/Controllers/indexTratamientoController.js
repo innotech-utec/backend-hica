@@ -64,3 +64,17 @@ export const indexTratamientoController = async (req, res) => {
     res.status(500).json({ message: 'Error al obtener los tratamientos.' });
   }
 };
+
+export const indexAllTratamientoController = async (req, res) => {
+  
+  try {
+    const tratamientos = await Tratamiento.findAll();
+
+    console.log('Tratamientos de BD:', tratamientos);
+
+    res.status(200).json(tratamientos);
+  } catch (error) {
+    console.error('Error al obtener los tratamientos:', error);
+    res.status(500).json({ message: 'Error al obtener los tratamientos.' });
+  }
+};

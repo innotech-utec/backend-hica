@@ -50,3 +50,7 @@ GET http://localhost:4500/api/v10//tratamientos/veterinario/4 HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzA3NTMxMDksImV4cCI6MTczMDc1NjcwOX0.vWTsOoFmqh6CK5otgJG2I0rS_a0_R11oLatXbHfhVJ0
 
 ###
+###
+GET http://localhost:4500/api/v10//tratamientos HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzEzNTk0OTZ9.clZQfDbc9fBEj9BbCmPksKpNtr8c6Wo6E5RVxXE7Gu4
+###

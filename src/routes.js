@@ -33,6 +33,7 @@ import { getExamenObjetivoByFichaController } from './Animales/Controllers/getEx
 
 import { createTratamientoController } from './Animales/Controllers/createTratamientoController.js';
 import { indexTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
+import { indexAllTratamientoController } from './Animales/Controllers/indexTratamientoController.js';
 import { updateTratamientoController } from './Animales/Controllers/udpateTratamientoController.js';
 
 
@@ -118,6 +119,7 @@ router.patch('/examenObjetivo/:id',token, updateExamenObjetivoController);
 router.get('/tratamientos/:fichaClinicaId', token, indexTratamientoController);
 router.get('/tratamientos/veterinario/:veterinarioId', token, getTratamientosVeterinarioController);
 router.post('/tratamientos', token, createTratamientoController);
+router.get('/tratamientos', token, indexAllTratamientoController);
 router.put('/tratamientos/:id/:nuevoEstado', autorizacionController);
 router.patch('/tratamientos/:id',token, updateTratamientoController);
 
@@ -138,12 +140,13 @@ router.post('/veterinarios', token, createVeterinarioController);
 router.patch('/veterinarios/:userId', updateVeterinarioController);
 router.get('/veterinarios/:veterinarioId/tratamientos', getTratamientosVeterinarioController);
 
+//Insumos
 router.post('/articulos', token, createArticuloController); 
 router.get('/articulos', token, indexArticuloController); 
 router.patch('/articulos/:id', token, updateArticuloController); 
 router.post('/articulos/:articuloId/ajustar-stock', adjustStock);
 
-
+//Facturas
 router.post('/facturas/:facturaId/cerrar', cerrarFacturaController);
 router.post('/facturas/createOrGet', createOrGetFacturaController);
 router.post('/facturas/:facturaId/articulos/:articuloId', addOrUpdateFacturaArticuloController);
