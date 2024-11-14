@@ -52,10 +52,12 @@ jobs:
                 git log -1
                 
                 echo "Reconstruyendo imagen Docker..."
-                cd /home/innotech/hica/backend/docker
-                docker compose down
-                docker compose build --no-cache
-                docker compose up -d
+                docker stop cont_backend || true
+                docker rm cont_backend || true
+                docker build -t backend-hica .
+                docker run -d --name cont_backend \
+                          -p 4500:4500 \
+                          backend-hica
                 
                 echo "Verificando estado del contenedor..."
                 docker ps | grep cont_backend
