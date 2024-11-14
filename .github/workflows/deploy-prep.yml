@@ -1,0 +1,56 @@
+# .github/workflows/deploy-backend-preprod.yml
+name: Deploy Backend to Preprod
+
+on:
+  push:
+    branches:
+      - preprod
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_BACKEND }}  # Cambiado para usar las credenciales del backend
+      
+      - name: Update Repository
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az vm run-command invoke \
+              --resource-group ${{ secrets.AZURE_RESOURCE_GROUP_BACKEND }} \
+              --name ${{ secrets.AZURE_VM_BACKEND_NAME }} \
+              --command-id RunShellScript \
+              --scripts '
+                # Ejecutar como usuario innotech
+                sudo -u innotech bash << "EOF"
+                export HOME=/home/innotech
+                
+                echo "Configurando git safe.directory..."
+                git config --global --add safe.directory /home/innotech/hica/backend/backend-hica
+                
+                echo "Iniciando actualización del repositorio..."
+                cd /home/innotech/hica/backend/backend-hica || exit 1
+                echo "Directorio actual: $(pwd)"
+                
+                echo "Estado actual del repositorio:"
+                git status
+                
+                echo "Obteniendo cambios remotos..."
+                git fetch origin preprod || exit 1
+                
+                echo "Cambiando a rama preprod..."
+                git checkout preprod || exit 1
+                
+                echo "Actualizando rama preprod..."
+                git pull origin preprod || exit 1
+                
+                echo "Log del último commit:"
+                git log -1
+                
+                echo "Actualización completada."
+                EOF
+              '
