@@ -76,6 +76,7 @@ app.use(express.urlencoded({limit: '50mb', extended: true}));
 
     server.listen(config.port, () => {
       console.log(`Entorno: ${process.env.NODE_ENV || 'development'}`);
+      console.log('Deploy exitoso');
       console.log(`Backend escuchando en el puerto ${config.port} con ${config.protocol.toUpperCase()}`);
     });
   } catch (error) {
