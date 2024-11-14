@@ -14,9 +14,9 @@ jobs:
       - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_BACKEND }}  # Cambiado para usar las credenciales del backend
+          creds: ${{ secrets.AZURE_CREDENTIALS_BACKEND }}
       
-      - name: Update Repository
+      - name: Update Repository and Rebuild
         uses: azure/CLI@v1
         with:
           inlineScript: |
@@ -51,6 +51,18 @@ jobs:
                 echo "Log del último commit:"
                 git log -1
                 
-                echo "Actualización completada."
+                echo "Reconstruyendo imagen Docker..."
+                cd /home/innotech/hica/backend/docker
+                docker compose down
+                docker compose build --no-cache
+                docker compose up -d
+                
+                echo "Verificando estado del contenedor..."
+                docker ps | grep cont_backend
+                
+                echo "Mostrando logs del contenedor..."
+                docker logs --tail 10 cont_backend
+                
+                echo "Despliegue completado."
                 EOF
               '
