@@ -11,6 +11,7 @@ import { Departamento } from './Responsables/Models/Departamento.js';
 import Articulo from './Facturas/Models/Articulo.js';
 import { Factura } from './Facturas/Models/Factura.js';
 import { FacturaArticulos } from './Facturas/Models/FacturaArticulo.js';
+import { Reseña } from './Animales/Models/Reseña.js';
 
 export default function setupRelationships() {
   User.hasOne(Veterinario, { foreignKey: 'userId', as: 'veterinario', onDelete: 'CASCADE' });
@@ -49,4 +50,7 @@ export default function setupRelationships() {
   Factura.belongsToMany(Articulo, { through: FacturaArticulos,foreignKey: 'facturaId' });
   
   Articulo.belongsToMany(Factura, { through: FacturaArticulos, foreignKey: 'articuloId' });
+
+  FichaClinica.hasOne(Reseña, { foreignKey: 'fichaClinicaId', as: 'reseña', onDelete: 'CASCADE' });
+  Reseña.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
 }
