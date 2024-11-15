@@ -59,6 +59,9 @@ import { updateExamenObjetivoController } from './Animales/Controllers/udpateExa
 
 //Reseña
 import {uploadResenaController} from "../config/cloudinary.js"
+import { getResenaImagenController } from './Animales/Controllers/getResenaImagenController.js';
+
+
 import { createArticuloController } from './Facturas/Controllers/articuloController.js';
 import { updateArticuloController } from './Facturas/Controllers/articuloController.js';
 import { indexArticuloController } from './Facturas/Controllers/articuloController.js';
@@ -155,6 +158,7 @@ router.get('/facturas/:facturaId/articulos', getArticulosFacturaController);
 
 //Cargar resena
 router.post('/upload', uploadResenaController);
+router.get('/resena/:fichaClinicaId', getResenaImagenController);
 
 
 export { router };
