@@ -23,7 +23,7 @@ import { createAnimalController } from './Animales/Controllers/createAnimalContr
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
 import { autorizacionController } from './Animales/Controllers/autorizacionController.js';
 import { updateAnimalController } from './Animales/Controllers/updateAnimalController.js';
-import { asignarVeterinarioAFicha } from './Animales/Controllers/asignarVeterinarioAFicha.js';
+import { asignarVeterinarioAFicha, getVeterinariosByFicha, getFichasByVeterinario } from './Animales/Controllers/asignarVeterinarioAFicha.js';
 
 
 import { createFichaClinicaController } from './Animales/Controllers/createFichaClinicaController.js';
@@ -165,7 +165,9 @@ router.get('/resena/:fichaClinicaId', getResenaImagenController);
 
 //Dashboard
 router.get('/internados', getInternados);
-router.post('/asignacion', asignarVeterinarioAFicha);
+router.post('/asignacion', token, asignarVeterinarioAFicha);
+router.get('/asignacion/:fichaClinicaId', getVeterinariosByFicha);
+router.get('/veterinarios/:veterinarioId/fichas', token, getFichasByVeterinario);
 
 
 export { router };
