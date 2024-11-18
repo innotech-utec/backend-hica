@@ -7,7 +7,7 @@ export const autorizacionController = async (req, res) => {
   console.log("Estado recibido: ", nuevoEstado);
 
   // Validar que el nuevo estado sea válido
-  const estadosValidos = ['PENDIENTE', 'APROBADO', 'RECHAZADO'];
+  const estadosValidos = ['PENDIENTE', 'APROBADO', 'RECHAZADO', 'COMPLETADO'];
   if (!estadosValidos.includes(nuevoEstado)) {
     return res.status(400).json({ message: 'Estado de autorización no válido.' });
   }

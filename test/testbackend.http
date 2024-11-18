@@ -54,3 +54,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwO
 GET http://localhost:4500/api/v10//tratamientos HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzEzNTk0OTZ9.clZQfDbc9fBEj9BbCmPksKpNtr8c6Wo6E5RVxXE7Gu4
 ###
+
+###
+GET http://localhost:4500/api/v10/internados HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjYjUwODAzMC01NTFjLTQxNGItYjcyNC01NmJlOWIyMDljZmYiLCJpYXQiOjE3MzE5MDI2MzR9.kbR8eYWFj7jQ86Ov59IMkWjeXaZ2miNRec_DblP_JcE

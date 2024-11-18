@@ -23,6 +23,7 @@ import { createAnimalController } from './Animales/Controllers/createAnimalContr
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
 import { autorizacionController } from './Animales/Controllers/autorizacionController.js';
 import { updateAnimalController } from './Animales/Controllers/updateAnimalController.js';
+import { asignarVeterinarioAFicha } from './Animales/Controllers/asignarVeterinarioAFicha.js';
 
 
 import { createFichaClinicaController } from './Animales/Controllers/createFichaClinicaController.js';
@@ -72,6 +73,8 @@ import { addOrUpdateFacturaArticuloController } from './Facturas/Controllers/fac
 import { getArticulosFacturaController } from './Facturas/Controllers/facturaArticuloController.js';
 import { createOrGetFacturaController } from './Facturas/Controllers/facturaController.js';
 import { adjustStock} from './Facturas/Controllers/articuloController.js';
+
+import {getInternados} from "./Dashboard/dashboardService.js";
 
 
 const router = express.Router();
@@ -159,6 +162,10 @@ router.get('/facturas/:facturaId/articulos', getArticulosFacturaController);
 //Cargar resena
 router.post('/upload', uploadResenaController);
 router.get('/resena/:fichaClinicaId', getResenaImagenController);
+
+//Dashboard
+router.get('/internados', getInternados);
+router.post('/asignacion', asignarVeterinarioAFicha);
 
 
 export { router };

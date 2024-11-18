@@ -53,4 +53,9 @@ export default function setupRelationships() {
 
   FichaClinica.hasOne(Reseña, { foreignKey: 'fichaClinicaId', as: 'reseña', onDelete: 'CASCADE' });
   Reseña.belongsTo(FichaClinica, { foreignKey: 'fichaClinicaId', as: 'fichaClinica' });
+
+  Veterinario.belongsToMany(FichaClinica, { through: 'VeterinarioFicha',foreignKey: 'veterinarioId',as: 'fichasClinicas'});
+
+  FichaClinica.belongsToMany(Veterinario, { through: 'VeterinarioFicha',foreignKey: 'fichaId',as: 'veterinarios'});
+
 }
