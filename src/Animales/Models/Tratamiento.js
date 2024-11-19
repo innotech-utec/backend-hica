@@ -26,7 +26,7 @@ const Tratamiento = sequelize.define('tratamientos', {
     allowNull: true,
   },
   estadoAutorizacion: {
-    type: DataTypes.ENUM('PENDIENTE', 'APROBADO', 'RECHAZADO'),
+    type: DataTypes.ENUM('PENDIENTE', 'APROBADO', 'RECHAZADO', 'COMPLETADO'),
     defaultValue: 'PENDIENTE', // Estado por defecto
     allowNull: false,
   },
@@ -34,7 +34,7 @@ const Tratamiento = sequelize.define('tratamientos', {
     type: DataTypes.UUID,
     allowNull: false,
   },
-  veterinarioId: { // Añadimos el campo del responsable del tratamiento
+  veterinarioId: { 
     type: DataTypes.UUID,
     allowNull: false,
   },
