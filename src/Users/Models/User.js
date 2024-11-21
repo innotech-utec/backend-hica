@@ -10,7 +10,8 @@ const User = sequelize.define('users', {
 
     documento: {
         type: DataTypes.STRING(30),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
 
     nombre: {
