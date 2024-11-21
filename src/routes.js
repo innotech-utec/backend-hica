@@ -75,6 +75,9 @@ import { createOrGetFacturaController } from './Facturas/Controllers/facturaCont
 import { adjustStock} from './Facturas/Controllers/articuloController.js';
 
 import {getInternados} from "./Dashboard/dashboardService.js";
+import {getAnimalesFallecidos} from './Reportes/Controllers/reportesControllers.js';
+import {getAnimalesEutanasia} from './Reportes/Controllers/reportesControllers.js';
+import {getVeterinariosTratamientos} from './Reportes/Controllers/reportesControllers.js';
 
 
 const router = express.Router();
@@ -159,7 +162,7 @@ router.post('/facturas/:facturaId/articulos/:articuloId', addOrUpdateFacturaArti
 router.get('/facturas/:facturaId/articulos', getArticulosFacturaController);
 
 
-//Cargar resena
+//Cargar reseña
 router.post('/upload', uploadResenaController);
 router.get('/resena/:fichaClinicaId', getResenaImagenController);
 
@@ -169,5 +172,9 @@ router.post('/asignacion', token, asignarVeterinarioAFicha);
 router.get('/asignacion/:fichaClinicaId', getVeterinariosByFicha);
 router.get('/veterinarios/:veterinarioId/fichas', token, getFichasByVeterinario);
 
+//reportes
+router.get('/animales-fallecidos', getAnimalesFallecidos);
+router.get('/animales-eutanasia', getAnimalesEutanasia);
+router.get('/veterinarios-tratamientos', getVeterinariosTratamientos);
 
 export { router };
