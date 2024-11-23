@@ -18,14 +18,14 @@ export const seedDepartamentos = async () => {
     { nombre: "Lavalleja" },
     { nombre: "Maldonado" },
     { nombre: "Montevideo" },
-    { nombre: "Paysandú" },
-    { nombre: "Río Negro" },
+    { nombre: "Paysandu" },
+    { nombre: "Rio Negro" },
     { nombre: "Rivera" },
     { nombre: "Rocha" },
     { nombre: "Salto" },
-    { nombre: "San José" },
+    { nombre: "San Jose" },
     { nombre: "Soriano" },
-    { nombre: "Tacuarembó" },
+    { nombre: "Tacuarembo" },
     { nombre: "Treinta y Tres" }
   ];
 

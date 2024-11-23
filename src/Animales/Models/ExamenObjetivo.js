@@ -40,7 +40,11 @@ const ExamenObjetivo = sequelize.define('examenObjetivo', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
-  mucosasAparentes: {
+  mucosasAparentesTipo: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  mucosasAparentesEstado: {
     type: DataTypes.TEXT,
     allowNull: true,
   },

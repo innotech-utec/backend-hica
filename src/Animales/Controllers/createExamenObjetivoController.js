@@ -12,7 +12,8 @@ export const createExamenObjetivoController = async (req, res) => {
       fascies,
       gangliosLinfaticos,
       pielSubcutaneo,
-      mucosasAparentes,
+      mucosasAparentesTipo,
+      mucosasAparentesEstado,
       grandesFuncionales,
       actitudesAnomalas,
       EOP,
@@ -38,13 +39,13 @@ export const createExamenObjetivoController = async (req, res) => {
       return res.status(400).json({ message: 'El campo "temperatura" debe ser un número.' });
     }
 
-    // Verificar existencia de la ficha clínica
+    
     const fichaClinica = await FichaClinica.findByPk(fichaClinicaId);
     if (!fichaClinica) {
       return res.status(404).json({ message: 'La ficha clínica proporcionada no existe.' });
     }
 
-    // Verificar si ya existe un examen objetivo asociado a esta ficha clínica
+    
     const examenExistente = await ExamenObjetivo.findOne({ where: { fichaClinicaId } });
     if (examenExistente) {
       return res.status(400).json({ message: 'Ya existe un examen objetivo para esta ficha clínica.' });
@@ -60,7 +61,8 @@ export const createExamenObjetivoController = async (req, res) => {
       fascies,
       gangliosLinfaticos,
       pielSubcutaneo,
-      mucosasAparentes,
+      mucosasAparentesTipo,
+      mucosasAparentesEstado,
       grandesFuncionales,
       actitudesAnomalas,
       EOP,
