@@ -8,9 +8,7 @@ import { Op, Sequelize } from 'sequelize';
 import { sequelize } from "../../database.js";
 
 export class ReportesService {
-  // Método privado para obtener rango de fechas
   static #getDateRange(startDate, endDate) {
-    // Agregamos un día adicional a la fecha final para incluir registros del día
     const endDateAdjusted = new Date(endDate);
     endDateAdjusted.setDate(endDateAdjusted.getDate() + 1);
     
@@ -20,13 +18,11 @@ export class ReportesService {
     };
   }
 
-  // Método privado para validar fecha
   static #isValidDate(dateString) {
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     return regex.test(dateString) && !isNaN(Date.parse(dateString));
   }
 
-  // Método para obtener animales fallecidos
   static async getAnimalesFallecidos(startDate, endDate, groupBy = 'monthly') {
     if (startDate && !this.#isValidDate(startDate)) {
       throw new Error('Fecha de inicio inválida');
@@ -81,7 +77,6 @@ export class ReportesService {
     }
   }
 
-  // Método para obtener animales eutanasiados (similar al método anterior)
   static async getAnimalesEutanasia(startDate, endDate, groupBy = 'monthly') {
     if (startDate && !this.#isValidDate(startDate)) {
       throw new Error('Fecha de inicio inválida');
@@ -136,7 +131,6 @@ export class ReportesService {
     }
   }
 
-  // Método para obtener tratamientos por veterinario (sin cambios significativos)
   static async getVeterinariosTratamientos(startDate, endDate, groupBy = 'monthly') {
     if (startDate && !this.#isValidDate(startDate)) {
       throw new Error('Fecha de inicio inválida');
@@ -151,12 +145,12 @@ export class ReportesService {
       return await Tratamiento.findAll({
         attributes: [
           [Sequelize.fn('COUNT', Sequelize.col('tratamientos.id')), 'cantidadTratamientos'],
-          [Sequelize.col('tratamientos.createdAt'), 'fechaModificacion'],
+          [Sequelize.col('tratamientos.fecha'), 'fechaTratamiento'],
           [Sequelize.col('veterinario.user.nombre'), 'nombreVeterinario'],
           [Sequelize.col('veterinario.user.apellido'), 'apellidoVeterinario'],
         ],
         where: {
-          createdAt: { [Op.between]: [fechaInicio, fechaFin] },
+          fecha: { [Op.between]: [fechaInicio, fechaFin] },
         },
         include: [
           {
@@ -173,11 +167,11 @@ export class ReportesService {
           },
         ],
         group: [
-          'tratamientos.createdAt',
+          'tratamientos.fecha',
           'veterinario.user.nombre',
           'veterinario.user.apellido',
         ],
-        order: [[sequelize.col('fechaModificacion'), 'ASC']],
+        order: [[sequelize.col('fechaTratamiento'), 'ASC']],
         raw: true,
       });
     } catch (error) {
