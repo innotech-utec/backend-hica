@@ -13,7 +13,8 @@ export const updateExamenObjetivoController = async (req, res) => {
       fascies,
       gangliosLinfaticos,
       pielSubcutaneo,
-      mucosasAparentes,
+      mucosasAparentesTipo,
+      mucosasAparentesEstado,
       grandesFuncionales,
       actitudesAnomalas,
       EOP,
@@ -49,7 +50,8 @@ export const updateExamenObjetivoController = async (req, res) => {
     examen.fascies = fascies;
     examen.gangliosLinfaticos = gangliosLinfaticos;
     examen.pielSubcutaneo = pielSubcutaneo;
-    examen.mucosasAparentes = mucosasAparentes;
+    examen.mucosasAparentesTipo=mucosasAparentesTipo;
+    examen.mucosasAparentesEstado=mucosasAparentesEstado;
     examen.grandesFuncionales = grandesFuncionales;
     examen.actitudesAnomalas = actitudesAnomalas;
     examen.EOP = EOP;
