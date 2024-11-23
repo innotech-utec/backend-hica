@@ -10,9 +10,9 @@ const RegistroParametros = sequelize.define(
       primaryKey: true,
     },
     fecha: {
-      type: DataTypes.DATE,
-      allowNull: false,
-    },
+    type: DataTypes.DATEONLY,
+    allowNull: false,
+  },
     hora: {
       type: DataTypes.TIME,
       allowNull: false,
