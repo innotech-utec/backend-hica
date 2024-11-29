@@ -5,6 +5,7 @@ import { loginController } from './Auth/Controllers/loginController.js';
 import { verifyTokenController } from './Auth/Controllers/verifyTokenController.js';
 import { token } from './Auth/Middlewares/token.js';
 
+import { aceptarTerminosController } from './Users/Controllers/aceptarTerminosController.js';
 import { indexUserController } from './Users/Controllers/indexUserController.js';
 import { createUserController } from './Users/Controllers/createUserController.js';
 import { deleteController } from './Users/Controllers/deleteController.js';
@@ -92,6 +93,7 @@ router.post('/usuarios', createUserController);
 router.delete('/usuarios/:id', token, deleteController);
 router.get('/usuarios/:id', token, showController);
 router.patch('/usuarios/:id', token, updateController);
+router.post('/users/aceptar-terminos', token, aceptarTerminosController);
 
 // Rutas de responsables
 router.get('/responsables', token, indexResponsableController); 
