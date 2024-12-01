@@ -8,25 +8,25 @@ export const seedDepartamentos = async () => {
   }
 
   const departamentosUruguay = [
-    { nombre: "Artigas" },
-    { nombre: "Canelones" },
-    { nombre: "Cerro Largo" },
-    { nombre: "Colonia" },
-    { nombre: "Durazno" },
-    { nombre: "Flores" },
-    { nombre: "Florida" },
-    { nombre: "Lavalleja" },
-    { nombre: "Maldonado" },
-    { nombre: "Montevideo" },
-    { nombre: "Paysandu" },
-    { nombre: "Rio Negro" },
-    { nombre: "Rivera" },
-    { nombre: "Rocha" },
-    { nombre: "Salto" },
-    { nombre: "San Jose" },
-    { nombre: "Soriano" },
-    { nombre: "Tacuarembo" },
-    { nombre: "Treinta y Tres" }
+    { nombre: "ARTIGAS" },
+    { nombre: "CANELONES" },
+    { nombre: "CERRO LARGO" },
+    { nombre: "COLONIA" },
+    { nombre: "DURAZNO" },
+    { nombre: "FLORES" },
+    { nombre: "FLORIDA" },
+    { nombre: "LAVALLEJA" },
+    { nombre: "MALDONADO" },
+    { nombre: "MONTEVIDEO" },
+    { nombre: "PAYSANDU" },
+    { nombre: "RIO NEGRO" },
+    { nombre: "RIVERA" },
+    { nombre: "ROCHA" },
+    { nombre: "SALTO" },
+    { nombre: "SAN JOSE" },
+    { nombre: "SORIANO" },
+    { nombre: "TACUAREMBO" },
+    { nombre: "TREINTA Y TRES" }
   ];
 
   try {

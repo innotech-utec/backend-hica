@@ -32,6 +32,7 @@ export const createUserController = async (request, response) => {
         if (existingUser) {
             return response.status(409).json({ message: 'El correo electrónico ya está registrado.' });
         }
+      
 
         // Crear el usuario si el correo no está duplicado
         const user = await User.create({
@@ -53,3 +54,4 @@ export const createUserController = async (request, response) => {
         return response.status(500).json({ message: 'Error al crear el usuario' });
     }
 };
+

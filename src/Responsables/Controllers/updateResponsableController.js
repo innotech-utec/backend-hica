@@ -7,7 +7,7 @@ import { Responsable } from '../Models/Responsable.js';
 export const updateResponsableController = async (request, response) => {
     try {
         const { id } = request.params;
-        const { docuemnto, nombre, apellido, domicilio, telefono, departamentoId, localidadId } = request.body;
+        const { documento, nombre, apellido, domicilio, telefono, departamentoId, localidadId } = request.body;
 
         const resp = await Responsable.findOne({ where: { id } });
         if (!resp) {
@@ -15,7 +15,7 @@ export const updateResponsableController = async (request, response) => {
         }
 
         // Actualizar los campos
-        resp.docuemnto = docuemnto;
+        resp.documento = documento;
         resp.nombre = nombre;
         resp.apellido = apellido;
         resp.domicilio = domicilio;
