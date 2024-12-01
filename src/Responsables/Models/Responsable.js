@@ -24,9 +24,12 @@ const Responsable = sequelize.define('responsables', {
     allowNull: false,
   },
   telefono: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING(15),
     allowNull: false,
+    validate: {
+      len: [1, 15],
   },
+},
   departamentoId: {
     type: DataTypes.INTEGER,
     allowNull: false,

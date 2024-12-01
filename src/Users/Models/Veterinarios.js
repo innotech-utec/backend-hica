@@ -19,8 +19,8 @@ const Veterinario = sequelize.define('veterinarios', {
     },
   
     Dependencia: {
-      type: DataTypes.ENUM('Clinica Pequeños Animales', 'Equinos','Endocrinologia y Metabolismo Animal', 'Gestión Hospitalaria', 'Semiología'),
-      defaultValue: 'Equinos', 
+      type: DataTypes.ENUM('CLÍNICA PEQUEÑOS ANIMALES', 'EQUINOS','ENDOCRINOLOGÍA y METABOLISMO ANIMAL', 'GESTIÓN HOSPITALARIA', 'SEMIOLOGÍA'),
+      defaultValue: 'EQUINOS', 
       allowNull: false,
     },
  
@@ -45,8 +45,8 @@ Veterinario.paginate = async (records, page) => {
         offset: records * (page - 1),
         include: [{
           model: User,
-          as: 'user',  // Asegúrate de que coincide con el alias en la definición de la relación
-          attributes: ['id', 'nombre', 'apellido', 'email'],  // Solo trae los campos necesarios
+          as: 'user',  
+          attributes: ['id', 'nombre', 'apellido', 'email'],  
         }],
       });
   
@@ -54,7 +54,7 @@ Veterinario.paginate = async (records, page) => {
       const lastPage = Math.ceil(totalCount / records);
   
       return {
-        data: veterinarios.map(vet => vet.toJSON()),  // Convierte los objetos Sequelize a JSON
+        data: veterinarios.map(vet => vet.toJSON()),  
         meta: {
           current: page,
           records: records,

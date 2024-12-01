@@ -27,7 +27,7 @@ export const createVeterinarioController = async (request, response) => {
       return response.status(404).json({ message: 'Usuario no encontrado.' });
     }
 
-    // Subir foto a Cloudinary si existe
+    /*// Subir foto a Cloudinary si existe
     let fotoUrl = null;
     if (Foto) {
       try {
@@ -37,7 +37,7 @@ export const createVeterinarioController = async (request, response) => {
         await t.rollback();
         return response.status(500).json({ message: 'Error al procesar la imagen.' });
       }
-    }
+    }*/
 
     // Crear el veterinario con la URL de la foto
     const veterinario = await Veterinario.create({
@@ -45,7 +45,7 @@ export const createVeterinarioController = async (request, response) => {
       Validado: Validado || false,  
       deviceId: deviceId || null, 
       Dependencia,
-      Foto: fotoUrl, // Ahora guardamos la URL en lugar del Buffer
+    
       userId  
     }, { transaction: t });
 
@@ -59,7 +59,7 @@ export const createVeterinarioController = async (request, response) => {
         N_de_registro: veterinario.N_de_registro,
         Validado: veterinario.Validado,
         Dependencia: veterinario.Dependencia,
-        Foto: veterinario.Foto, // Ahora será una URL
+     /*   Foto: veterinario.Foto, // Ahora será una URL*/
         userId: veterinario.userId
       }
     });

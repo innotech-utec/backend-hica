@@ -24,6 +24,7 @@ import { createAnimalController } from './Animales/Controllers/createAnimalContr
 import { indexAnimalController } from './Animales/Controllers/indexAnimalController.js';
 import { autorizacionController } from './Animales/Controllers/autorizacionController.js';
 import { updateAnimalController } from './Animales/Controllers/updateAnimalController.js';
+import edadAnimalController from './Animales/Controllers/edadAnimalController.js';
 import { asignarVeterinarioAFicha, getVeterinariosByFicha, getFichasByVeterinario } from './Animales/Controllers/asignarVeterinarioAFicha.js';
 
 
@@ -110,6 +111,8 @@ router.get('/animales', token, indexAnimalController);
 router.post('/animales', token, createAnimalController);
 router.get('/animales/:id', token, showAnimalController);
 router.patch('/animales/:animalId', token, updateAnimalController);
+router.get('/animales/:animalId/edad/:unidad', token, edadAnimalController.obtenerEdadEn);
+router.patch('/animales/:animalId/edad', token, edadAnimalController.actualizarEdad);
 
 // Rutas de fichas clínicas
 router.get('/fichasClinicas/animal/:animalId', token, indexFichaClinicaController);

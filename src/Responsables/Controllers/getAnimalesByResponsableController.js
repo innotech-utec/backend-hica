@@ -6,7 +6,7 @@ export const getAnimalesByResponsableController = async (req, res) => {
     const { id } = req.params;
     const animales = await Animal.findAll({
       where: { responsableId: id },
-      attributes: ['id', 'nombre', 'especie', 'raza', 'edad']
+      attributes: ['id', 'nombre', 'especie', 'raza', 'edadValor','edadUnidad']
     });
     res.json(animales);
   } catch (error) {
