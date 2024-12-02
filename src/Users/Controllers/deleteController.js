@@ -1,6 +1,7 @@
 import { User } from '../Models/User.js';
 import { Veterinario } from '../Models/Veterinarios.js';
 import { Tratamiento } from '../../Animales/Models/Tratamiento.js';
+import { FichaClinica } from '../../Animales/Models/FichaClinica.js';
 
 export const deleteController = async (req, res) => {
   try {
@@ -16,7 +17,22 @@ export const deleteController = async (req, res) => {
       if (tratamientos.length > 0) {
         return res.status(400).json({ message: 'Este veterinario tiene tratamientos asignados. Debes reasignar los tratamientos antes de eliminarlo.' });
       }
+
+      const veterinarioConFichas = await Veterinario.findByPk(veterinario.id, {
+        include: [{
+          model: FichaClinica,
+          as: 'fichasClinicas'
+        }]
+      });
+
+      if (veterinarioConFichas.fichasClinicas.length > 0) {
+        return res.status(400).json({ 
+          message: 'Este veterinario tiene fichas de animales asignadas. Debes reasignarlas antes de eliminarlo.' 
+        });
+      }
+
     }
+
 
     // Si no es veterinario o no tiene tratamientos, proceder con la eliminación del usuario
     const user = await User.findByPk(id);
