@@ -8,7 +8,7 @@ export const indexFichaClinicaAbiertaController = async (req, res) => {
         const fichasAbiertas = await FichaClinica.findAll({
             where: {
                 animalId: animalId,
-                estadoFichaClinica: ['Ingresado', 'Internado']
+                estadoFichaClinica: ['INGRESADO', 'INTERNADO']
             }
         });
 

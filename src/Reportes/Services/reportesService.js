@@ -39,13 +39,14 @@ export class ReportesService {
           [sequelize.fn('COUNT', sequelize.col('fichasClinicas.id')), 'cantidad'],
           [sequelize.col('fichasClinicas.updatedAt'), 'fechaModificacion'],
           [sequelize.col('animal.especie'), 'especie'],
-          [sequelize.col('animal.edad'), 'edad'],
+          [sequelize.col('animal.edad_valor'), 'edad_valor'],
+          [sequelize.col('animal.edad_unidad'), 'edad_unidad'],
           [sequelize.col('animal.raza'), 'raza'],
           [sequelize.col('fichasClinicas.motivoConsulta'), 'motivoConsulta'],
           [sequelize.col('examenObjetivo.diagnostico'), 'diagnostico'],
         ],
         where: {
-          estadoFichaClinica: 'Fallecimiento',
+          estadoFichaClinica: 'FALLECIMIENTO',
           updatedAt: { [Op.between]: [fechaInicio, fechaFin] },
         },
         include: [
@@ -63,7 +64,8 @@ export class ReportesService {
         group: [
           'fichasClinicas.updatedAt',
           'animal.especie',
-          'animal.edad',
+          'animal.edad_valor',
+          'animal.edad_unidad',
           'animal.raza',
           'fichasClinicas.motivoConsulta',
           'examenObjetivo.diagnostico',
@@ -93,13 +95,14 @@ export class ReportesService {
           [sequelize.fn('COUNT', sequelize.col('fichasClinicas.id')), 'cantidad'],
           [sequelize.col('fichasClinicas.updatedAt'), 'fechaModificacion'],
           [sequelize.col('animal.especie'), 'especie'],
-          [sequelize.col('animal.edad'), 'edad'],
+          [sequelize.col('animal.edad_valor'), 'edad_valor'],
+          [sequelize.col('animal.edad_unidad'), 'edad_unidad'],
           [sequelize.col('animal.raza'), 'raza'],
           [sequelize.col('fichasClinicas.motivoConsulta'), 'motivoConsulta'],
           [sequelize.col('examenObjetivo.diagnostico'), 'diagnostico'],
         ],
         where: {
-          estadoFichaClinica: 'Eutanasia',
+          estadoFichaClinica: 'EUTANASIA',
           updatedAt: { [Op.between]: [fechaInicio, fechaFin] },
         },
         include: [
@@ -117,7 +120,8 @@ export class ReportesService {
         group: [
           'fichasClinicas.updatedAt',
           'animal.especie',
-          'animal.edad',
+          'animal.edad_valor',
+          'animal.edad_unidad',
           'animal.raza',
           'fichasClinicas.motivoConsulta',
           'examenObjetivo.diagnostico',
