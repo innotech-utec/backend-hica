@@ -31,10 +31,10 @@ export const updateExamenObjetivoController = async (req, res) => {
     }
 
     // Validaciones para campos numéricos
-    if (!FC || isNaN(parseInt(FC))) {
+    if (!FC || isNaN(parseFloat(FC))) {
       return res.status(400).json({ message: 'El campo "FC" debe ser un número.' });
     }
-    if (!Resp || isNaN(parseInt(Resp))) {
+    if (!Resp || isNaN(parseFloat(Resp))) {
       return res.status(400).json({ message: 'El campo "Resp" debe ser un número.' });
     }
     if (temperatura !== undefined && temperatura !== '' && isNaN(parseFloat(temperatura))) {
@@ -42,8 +42,8 @@ export const updateExamenObjetivoController = async (req, res) => {
     }
 
     // Actualizar los campos del examen
-    examen.FC = parseInt(FC, 10);
-    examen.Resp = parseInt(Resp, 10);
+    examen.FC = parseFloat(FC);
+    examen.Resp = parseFloat(Resp);
     examen.temperatura = temperatura ? parseFloat(temperatura) : null;
     examen.condicionCorporal = condicionCorporal;
     examen.sensorio = sensorio;

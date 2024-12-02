@@ -18,11 +18,11 @@ const RegistroParametros = sequelize.define(
       allowNull: false,
     },
     FC: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
     },
     FR: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
     },
     temperatura: {
@@ -34,7 +34,7 @@ const RegistroParametros = sequelize.define(
       allowNull: false,
     },
     TllC: {
-      type: DataTypes.TEXT,
+      type: DataTypes.DECIMAL(4, 2),
       allowNull: false,
     },
     pliegueCutaneo: {
