@@ -84,7 +84,7 @@ export const getVeterinariosByFicha = async (req, res) => {
           model: FichaClinica,
           as: 'fichasClinicas',
           where: {
-            estadoFichaClinica: ['Ingresado', 'Internado']
+            estadoFichaClinica: ['INGRESADO', 'INTERNADO']
           },
           include: [{
             model: Animal,

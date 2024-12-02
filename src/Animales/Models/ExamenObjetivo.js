@@ -9,11 +9,11 @@ const ExamenObjetivo = sequelize.define('examenObjetivo', {
     primaryKey: true,
   },
   FC: {
-    type: DataTypes.INTEGER,
+   type: DataTypes.DECIMAL(4, 2),
     allowNull: false,
   },
   Resp: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.DECIMAL(4, 2),
     allowNull: false,
   },
   temperatura: {

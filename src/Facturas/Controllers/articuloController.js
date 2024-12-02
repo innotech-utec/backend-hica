@@ -3,8 +3,8 @@ import  Articulo  from "../Models/Articulo.js";
 
 export const createArticuloController = async (req, res) => {
   try {
-    const { nombre, descripcion, valor, stock } = req.body;
-    const articulo = await Articulo.create({ nombre, descripcion, valor, stock });
+    const { nombre,categoria, descripcion, valor, stock } = req.body;
+    const articulo = await Articulo.create({ nombre,categoria, descripcion, valor, stock });
     res.status(201).json(articulo);
   } catch (error) {
     console.error("Error al crear artículo:", error);
@@ -43,12 +43,12 @@ export const indexArticuloController = async (req, res) => {
 export const updateArticuloController = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, descripcion, valor, stock } = req.body;
+    const { nombre,categoria, descripcion, valor, stock } = req.body;
     const articulo = await Articulo.findByPk(id);
 
     if (!articulo) return res.status(404).json({ message: "Artículo no encontrado" });
 
-    await articulo.update({ nombre, descripcion, valor, stock });
+    await articulo.update({ nombre, categoria, descripcion, valor, stock });
     res.status(200).json(articulo);
   } catch (error) {
     console.error("Error al actualizar artículo:", error);

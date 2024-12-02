@@ -17,7 +17,7 @@ export const createFichaClinicaController = async (req, res) => {
   try {
     // Verificar si ya existe una ficha clínica abierta
     const fichaAbierta = await FichaClinica.findOne({
-      where: { animalId, estadoFichaClinica: 'Ingresado' },
+      where: { animalId, estadoFichaClinica: 'INGRESADO' },
     });
 
     if (fichaAbierta) {
@@ -37,7 +37,7 @@ export const createFichaClinicaController = async (req, res) => {
       });
 
       const tieneFichasActivas = fichasPrevias.some(ficha =>
-        ['Ingresado'].includes(ficha.estadoFichaClinica)
+        ['INGRESADO'].includes(ficha.estadoFichaClinica)
       );
 
       if (tieneFichasActivas) {

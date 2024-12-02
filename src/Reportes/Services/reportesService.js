@@ -46,7 +46,7 @@ export class ReportesService {
           [sequelize.col('examenObjetivo.diagnostico'), 'diagnostico'],
         ],
         where: {
-          estadoFichaClinica: 'Fallecimiento',
+          estadoFichaClinica: 'FALLECIMIENTO',
           updatedAt: { [Op.between]: [fechaInicio, fechaFin] },
         },
         include: [
@@ -102,7 +102,7 @@ export class ReportesService {
           [sequelize.col('examenObjetivo.diagnostico'), 'diagnostico'],
         ],
         where: {
-          estadoFichaClinica: 'Eutanasia',
+          estadoFichaClinica: 'EUTANASIA',
           updatedAt: { [Op.between]: [fechaInicio, fechaFin] },
         },
         include: [
