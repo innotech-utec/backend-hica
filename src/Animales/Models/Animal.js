@@ -129,4 +129,24 @@ edadUnidad: {
   paranoid: true,
 });
 
+Animal.paginate = async (records, page) => {
+  const animales = await Animal.findAll({
+      limit: records,
+      offset: records * (page - 1)
+  });
+
+  const lastPage = Math.ceil((await Animal.count()) / records);
+
+  return {
+      data: animales,
+      meta: {
+          current: page,
+          records: records,
+          next: (lastPage >= page + 1) ? page + 1 : null,
+          last: lastPage
+      }
+  };
+}
+
+
 export { Animal };
