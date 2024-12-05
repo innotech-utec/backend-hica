@@ -34,7 +34,7 @@ await RegistroParametros.sync({ alter: true });
 await Tratamiento.sync({ alter: true }); 
 await HistoriaClinica.sync({ force: true }); 
 
-await Articulo.sync({ alter: true }); 
+await Articulo.sync({ force: true }); 
 await Factura.sync({ alter: true }); 
 await FacturaArticulos.sync({ alter: true }); 
 
