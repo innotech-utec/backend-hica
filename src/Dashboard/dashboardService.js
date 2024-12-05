@@ -6,7 +6,7 @@ export const getInternados = async (req, res) => {
     // Consultar la historia clínica completa
     const internados = await FichaClinica.count({ 
       where: { 
-        estadoFichaClinica: 'Internado'
+        estadoFichaClinica: 'INTERNADO'
       } 
     });
 
